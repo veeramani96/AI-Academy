@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AetherAI Academy: Become an Expert AI Engineer</title>
+    <!-- Google Fonts for futuristic cyberpunk feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;900&family=Share+Tech+Mono&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="cyber-grid"></div>
+    <div class="vignette"></div>
+
+    <!-- LOGIN VIEW PORTAL -->
+    <div class="login-view-backdrop" id="login-view">
+        <div class="login-card">
+            <div class="login-logo"><i class="fa-solid fa-brain"></i></div>
+            <h2 id="login-card-title">AETHER_AI ACADEMY</h2>
+            <p id="login-card-subtitle">SECURE NEOPHYTE AUTHENTICATION GATEWAY</p>
+
+            <div class="login-alert" id="login-alert-box"></div>
+
+            <!-- AUTHENTICATION FORM -->
+            <form id="login-form">
+                <div class="login-form-group" id="reg-name-group" style="display: none;">
+                    <label>COGNITIVE IDENTITY NAME</label>
+                    <div class="login-input-wrapper">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" class="login-input" id="auth-name" placeholder="e.g. Master Coder">
+                    </div>
+                </div>
+
+                <div class="login-form-group">
+                    <label>ACCESS ID / EMAIL</label>
+                    <div class="login-input-wrapper">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" class="login-input" id="auth-email" placeholder="e.g. admin@aether.ai" required>
+                    </div>
+                </div>
+
+                <div class="login-form-group">
+                    <label>SECURITY PASSCODE</label>
+                    <div class="login-input-wrapper">
+                        <i class="fa-solid fa-key"></i>
+                        <input type="password" class="login-input" id="auth-password" placeholder="e.g. admin123" required>
+                    </div>
+                </div>
+
+                <button class="login-btn" type="submit" id="auth-submit-btn">AUTHENTICATE SYSTEM</button>
+            </form>
+
+            <span class="login-toggle-link" id="auth-toggle-link">REGISTER LOCAL PROFILE</span>
+            
+            <div style="margin-top: 24px; font-size: 10.5px; color: var(--text-muted); font-family: var(--font-mono); border-top: 1px dashed rgba(0, 240, 255, 0.15); padding-top: 14px;">
+                TEST ACCESS credentials:<br>
+                Email: <span style="color: var(--neon-cyan);">admin@aether.ai</span> &nbsp;|&nbsp; Passcode: <span style="color: var(--neon-cyan);">admin123</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN APP WRAPPER -->
+    <div id="app-view" style="display: none;">
+        <div class="app-container">
+        <!-- TOP NAVIGATION BAR -->
+        <header class="app-header">
+            <div class="logo-area">
+                <i class="fa-solid fa-brain glowing-logo"></i>
+                <div class="logo-text">
+                    <h1>AETHER_AI</h1>
+                    <span>ACADEMY OF COGNITIVE ENGINEERING</span>
+                </div>
+            </div>
+            <div class="salary-ticker-container" style="display: none;">
+                <div class="ticker-label">ESTIMATED ANNUAL PACKAGE</div>
+                <div class="ticker-value" id="salary-value">$0,000</div>
+            </div>
+            <div class="header-controls">
+                <button class="control-btn" id="audio-toggle" title="Toggle Sound Synth">
+                    <i class="fa-solid fa-volume-high"></i>
+                </button>
+                <button class="control-btn" id="voice-toggle" title="Toggle AI Voice Output">
+                    <i class="fa-solid fa-comment-dots"></i>
+                </button>
+                <div class="system-time" id="clock">12:00:00</div>
+            </div>
+        </header>
+
+        <!-- VIEW A: CURRICULUM OVERVIEW BOARD -->
+        <main class="main-layout" id="curriculum-view">
+            
+            <!-- LEFT PANEL: USER PROFILE & STATS -->
+            <section class="left-panel glass-panel">
+                <div class="panel-header">
+                    <i class="fa-solid fa-id-card"></i> PLAYER PROFILE
+                </div>
+                <div class="profile-card">
+                    <div class="avatar-container">
+                        <img src="assets/avatar.jpg" alt="Aether Wizard Avatar" id="player-avatar">
+                        <div class="avatar-glow"></div>
+                        <div class="xp-badge" id="player-level-badge">LVL 0</div>
+                    </div>
+                    <div class="profile-details">
+                        <h2 id="player-name">NEOPHYTE_CODER</h2>
+                        <p class="player-rank" id="player-rank">Novice Prompt Wizard</p>
+                    </div>
+                </div>
+
+                <!-- XP Bar -->
+                <div class="xp-container">
+                    <div class="xp-labels">
+                        <span>XP: <span id="current-xp">0</span> / <span id="next-level-xp">100</span></span>
+                        <span id="xp-percent">0%</span>
+                    </div>
+                    <div class="xp-bar-outer">
+                        <div class="xp-bar-inner" id="xp-bar-fill"></div>
+                    </div>
+                </div>
+
+                <!-- Core Stats Radar Grid -->
+                <div class="stats-container">
+                    <div class="section-title">ENGINEERING CORE ATTRIBUTES</div>
+                    <div class="stat-row">
+                        <div class="stat-info">
+                            <span><i class="fa-solid fa-calculator"></i> Mathematics & Theory</span>
+                            <span id="stat-math-val">10</span>
+                        </div>
+                        <div class="stat-bar-outer"><div class="stat-bar-inner math-glow" id="stat-math" style="width: 10%;"></div></div>
+                    </div>
+                    <div class="stat-row">
+                        <div class="stat-info">
+                            <span><i class="fa-solid fa-code"></i> Python & Coding</span>
+                            <span id="stat-coding-val">15</span>
+                        </div>
+                        <div class="stat-bar-outer"><div class="stat-bar-inner coding-glow" id="stat-coding" style="width: 15%;"></div></div>
+                    </div>
+                    <div class="stat-row">
+                        <div class="stat-info">
+                            <span><i class="fa-solid fa-network-wired"></i> Deep Learning</span>
+                            <span id="stat-dl-val">5</span>
+                        </div>
+                        <div class="stat-bar-outer"><div class="stat-bar-inner dl-glow" id="stat-dl" style="width: 5%;"></div></div>
+                    </div>
+                    <div class="stat-row">
+                        <div class="stat-info">
+                            <span><i class="fa-solid fa-server"></i> MLOps & Deployments</span>
+                            <span id="stat-ops-val">5</span>
+                        </div>
+                        <div class="stat-bar-outer"><div class="stat-bar-inner ops-glow" id="stat-ops" style="width: 5%;"></div></div>
+                    </div>
+                </div>
+
+                <!-- Achievements Unlocked -->
+                <div class="achievements-container">
+                    <div class="section-title">ACQUIRED RUNES (ACHIEVEMENTS)</div>
+                    <div class="achievements-grid" id="achievements-list">
+                        <!-- Achievements will be inserted dynamically by JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- MIDDLE PANEL: CURRICULUM & VISUAL LABS HUB -->
+            <section class="center-panel glass-panel">
+                <div class="panel-header flex-header" style="border-bottom: none; padding-bottom: 0;">
+                    <span><i class="fa-solid fa-graduation-cap"></i> AI ENGINEERING HUB</span>
+                    <span class="roadmap-subtitle">Train pipelines & explore visual lab modules</span>
+                </div>
+
+                <!-- Tabs Switcher Navigation Bar -->
+                <div class="panel-tabs" style="display: flex; border-bottom: 1px solid rgba(0, 240, 255, 0.15); margin: 10px 20px 20px 20px; gap: 15px;">
+                    <button class="panel-tab active" id="tab-curriculum">
+                        <i class="fa-solid fa-graduation-cap"></i> CURRICULUM BOARD
+                    </button>
+                    <button class="panel-tab" id="tab-visual-labs">
+                        <i class="fa-solid fa-flask"></i> VISUAL AI LABS
+                    </button>
+                </div>
+
+                <!-- Tab Content A: FC Curriculum -->
+                <div id="curriculum-tab-content">
+                    <div class="curriculum-container" id="curriculum-container" style="padding-top: 0;">
+                        <!-- Loaded dynamically: Certification modules -->
+                    </div>
+                </div>
+
+                <!-- Tab Content B: Visual AI Labs -->
+                <div id="visual-labs-tab-content" style="display: none; padding: 0 20px 20px 20px; flex-direction: column; gap: 20px; overflow-y: auto; flex-grow: 1; height: calc(100vh - 200px);">
+                    <div class="visual-labs-grid" style="display: grid; grid-template-columns: 170px 1fr; gap: 20px;">
+                        
+                        <!-- Left Column: Topic List Selector -->
+                        <div class="labs-list-column" style="display: flex; flex-direction: column; gap: 10px; border-right: 1px dashed rgba(255,255,255,0.08); padding-right: 15px;">
+                            <h4 style="font-family: var(--font-cyber); font-size: 10px; color: var(--neon-cyan); letter-spacing: 0.5px; margin-bottom: 8px;">SELECT LAB MODULE</h4>
+                            <button class="lab-topic-btn active" id="lab-btn-1">1. RAG Retrieve</button>
+                            <button class="lab-topic-btn" id="lab-btn-2">2. CV Diffusion</button>
+                            <button class="lab-topic-btn" id="lab-btn-3">3. Golem Gym RL</button>
+                            <button class="lab-topic-btn" id="lab-btn-4">4. Swarm Orchestra</button>
+                            <button class="lab-topic-btn" id="lab-btn-5">5. Edge Quantization</button>
+                        </div>
+                        
+                        <!-- Right Column: Canvas Animatic & Simulator Controls -->
+                        <div class="lab-workspace-column" style="display: flex; flex-direction: column; gap: 15px;">
+                            
+                            <!-- Animatic Video Explanation Card -->
+                            <div class="instruction-card" style="margin-bottom: 0;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                    <h3 style="margin: 0; font-size: 12px;"><i class="fa-solid fa-circle-play"></i> VISUAL EXPLANATION ANIMATION</h3>
+                                    <button class="sandbox-btn" id="play-lab-anim-btn" style="padding: 4px 10px; font-size: 9.5px; display: flex; align-items: center; gap: 4px;">
+                                        <i class="fa-solid fa-pause" id="play-lab-icon"></i> <span id="play-lab-text">PAUSE</span>
+                                    </button>
+                                </div>
+                                <div class="lab-canvas-container" style="background: #000; border: 1px solid var(--border-color); border-radius: 8px; height: 160px; position: relative; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+                                    <canvas id="lab-animation-canvas" style="width: 100%; height: 100%; display: block;"></canvas>
+                                </div>
+                                <p id="lab-explanation-text" class="lore-text" style="margin-top: 10px; font-size: 11.5px; line-height: 1.45; color: var(--text-muted);"></p>
+                            </div>
+                            
+                            <!-- Practical Test Lab Card -->
+                            <div class="instruction-card" style="border: 1px solid rgba(0, 240, 255, 0.2); background: rgba(0, 240, 255, 0.015); margin-bottom: 0;">
+                                <h3><i class="fa-solid fa-flask"></i> PRACTICAL LAB ENVIRONMENT</h3>
+                                
+                                <div class="lab-controls-grid" id="lab-controls-container" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 12px;">
+                                    <!-- Populated dynamically by app.js -->
+                                </div>
+                                
+                                <button class="login-btn" id="run-lab-btn" style="margin-top: 15px; width: auto; padding: 10px 24px;">RUN LAB EXPERIMENT</button>
+                                
+                                <div class="lab-output-log" style="margin-top: 15px; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); border-radius: 6px; padding: 10px; height: 100px; overflow-y: auto; font-family: var(--font-mono); font-size: 11px; line-height: 1.4;">
+                                    <div style="font-family: var(--font-cyber); font-size: 10px; margin-bottom: 6px; color: var(--neon-cyan); border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 4px;">LAB SIMULATOR OUTPUT LOGS</div>
+                                    <div id="lab-console-logs" style="color: #c4d9eb;"></div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RIGHT PANEL: CAREER MATCHING -->
+            <section class="right-panel glass-panel">
+                <div class="panel-header">
+                    <i class="fa-solid fa-briefcase"></i> ACTIVE JOB OFFERS
+                </div>
+                
+                <!-- Live Student Rankings / Jobs -->
+                <div class="career-offers-container" style="flex-grow: 1;">
+                    <div class="section-title">TRANSMISSIONS</div>
+                    <div class="offers-list" id="offers-list">
+                        <!-- Careers list populated dynamically -->
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- VIEW B: THREE-PANEL INTERACTIVE WORKSPACE (FCC STYLE) -->
+        <main class="workspace-layout" id="workspace-view" style="display: none;">
+            
+            <!-- PANEL 1: INSTRUCTIONS & TEST SUITES -->
+            <section class="workspace-panel instructions-panel glass-panel">
+                <div class="panel-header">
+                    <i class="fa-solid fa-file-invoice"></i> INSTRUCTIONS & TESTS
+                </div>
+                
+                <div class="workspace-scroll-container">
+                    <!-- Dynamic Header image -->
+                    <div class="drawer-header" id="workspace-header-bg">
+                        <div class="drawer-header-overlay"></div>
+                        <div class="drawer-meta-info">
+                            <span class="drawer-level-tag" id="workspace-lvl-tag">LEVEL 1</span>
+                            <h2 class="drawer-title" id="workspace-title">Valley of Whispers</h2>
+                            <p class="drawer-subtitle" id="workspace-subtitle">NLP & LLMs Realm</p>
+                        </div>
+                    </div>
+
+                    <div class="instruction-body">
+                        <!-- Tech Tags -->
+                        <div class="tech-tags" id="workspace-tech-tags"></div>
+                        
+                        <!-- Lore -->
+                        <div class="instruction-card">
+                            <h3><i class="fa-solid fa-book-open-reader"></i> REALM CHRONICLES (LORE)</h3>
+                            <p id="workspace-lore" class="lore-text"></p>
+                        </div>
+
+                        <!-- Study Scroll (Glossary) Accordion -->
+                        <div class="drawer-card glass-card scroll-accordion" id="study-scroll-card" style="margin-bottom: 16px;">
+                            <h3 class="accordion-header" id="study-scroll-header">
+                                <span><i class="fa-solid fa-book-bookmark"></i> STUDY SCROLL (GLOSSARY)</span>
+                                <i class="fa-solid fa-chevron-down accordion-arrow" id="study-scroll-arrow"></i>
+                            </h3>
+                            <div class="accordion-content" id="study-scroll-content">
+                                <!-- Populated dynamically by app.js -->
+                            </div>
+                        </div>
+
+                        <!-- Detailed Challenge directions -->
+                        <div class="instruction-card">
+                            <h3><i class="fa-solid fa-circle-info"></i> DIRECTIONS:</h3>
+                            <p id="workspace-directions" class="directions-text"></p>
+                        </div>
+
+                        <!-- Sample Code & Solution Answer -->
+                        <div class="instruction-card" id="workspace-solution-card" style="border: 1px solid rgba(255, 215, 0, 0.25); background: rgba(255, 215, 0, 0.015);">
+                            <h3><i class="fa-solid fa-lightbulb" style="color: var(--neon-gold);"></i> SAMPLE CODE / ANSWER:</h3>
+                            <pre style="margin: 8px 0 0 0; background: rgba(0,0,0,0.5); padding: 8px; border-radius: 4px; overflow-x: auto; border: 1px solid rgba(255, 255, 255, 0.05);"><code id="workspace-solution-code" style="font-family: var(--font-mono); font-size: 11.5px; color: var(--neon-gold); font-weight: bold; white-space: pre-wrap; word-break: break-all;"></code></pre>
+                        </div>
+
+                        <!-- Workshop Steps Grid -->
+                        <div class="instruction-card" id="workspace-steps-container" style="display: none;">
+                            <div class="steps-grid-header">
+                                <span><i class="fa-solid fa-cubes"></i> WORKSHOP STEPS:</span>
+                                <span id="workspace-step-fraction">Step 1 of 5</span>
+                            </div>
+                            <div class="steps-grid" id="workspace-steps-grid">
+                                <!-- Populated dynamically by JS -->
+                            </div>
+                        </div>
+
+                        <!-- Test cases Checklist -->
+                        <div class="instruction-card">
+                            <h3><i class="fa-solid fa-vial-circle-check"></i> TEST CASES</h3>
+                            <div class="fcc-tests-list" id="fcc-tests-list">
+                                <!-- Test items rendered dynamically by JS -->
+                            </div>
+                        </div>
+
+                        <!-- Hints Clue Box -->
+                        <div class="mentor-hint-box" id="workspace-hint-box" style="display: none;">
+                            <!-- Populated dynamically by app.js -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PANEL 2: IDE CODE EDITOR -->
+            <section class="workspace-panel editor-panel glass-panel">
+                <div class="panel-header flex-header">
+                    <span><i class="fa-solid fa-code"></i> COGNITIVE_IDE.EXE</span>
+                    <button class="sandbox-btn" id="reset-code-btn" title="Reset Boilerplate">
+                        <i class="fa-solid fa-rotate-left"></i> Reset Code
+                    </button>
+                </div>
+                
+                <!-- Text Editor Area -->
+                <div class="editor-container">
+                    <div class="editor-lines" id="editor-line-numbers">
+                        <!-- Generated by JS -->
+                    </div>
+                    <textarea class="editor-textarea" id="code-editor" spellcheck="false" autocomplete="off"></textarea>
+                </div>
+
+                <!-- Bottom Controls Toolbar -->
+                <div class="workspace-toolbar">
+                    <button class="toolbar-btn back-btn" id="back-curriculum-btn">
+                        <i class="fa-solid fa-chevron-left"></i> CURRICULUM
+                    </button>
+                    <button class="toolbar-btn hint-btn" id="workspace-hint-btn">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> CONSULT MENTOR
+                    </button>
+                    <button class="toolbar-btn run-btn" id="workspace-run-btn">
+                        RUN ALL TESTS <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- PANEL 3: ORACLE MIC & CONSOLE TERMINAL -->
+            <section class="workspace-panel console-panel glass-panel">
+                <div class="panel-header">
+                    <i class="fa-solid fa-terminal"></i> ORACLE MONITOR & CONSOLE
+                </div>
+
+                <!-- Speech Wave Visualizer -->
+                <div class="oracle-visualizer-container">
+                    <canvas id="voice-wave"></canvas>
+                    <div class="oracle-status">
+                        <span id="oracle-state-indicator">SYSTEM: IDLE</span>
+                        <div class="status-pulse" id="status-pulse"></div>
+                    </div>
+                </div>
+
+                <!-- Speech Mic Box -->
+                <div class="speech-controls-box">
+                    <button class="mic-activation-btn" id="mic-btn">
+                        <i class="fa-solid fa-microphone"></i>
+                        <span>ACTIVATE VOICE ORACLE</span>
+                    </button>
+                    <div class="transcript-box">
+                        <div class="transcript-line user" id="user-transcript">Oracle ready for voice commands...</div>
+                        <div class="transcript-line system" id="system-response">Welcome to the Workspace interface.</div>
+                    </div>
+                </div>
+
+                <!-- Complete Sample Program Reference Panel -->
+                <div class="terminal-container" id="workspace-sample-program-container" style="height: 180px; margin-bottom: 12px; border: 1px solid rgba(0, 240, 255, 0.25); background: rgba(0, 240, 255, 0.015); display: flex; flex-direction: column;">
+                    <div class="terminal-header" style="background: rgba(0, 240, 255, 0.1); color: var(--neon-cyan); display: flex; justify-content: space-between; align-items: center; padding: 6px 12px; border-bottom: 1px solid rgba(0, 240, 255, 0.15);">
+                        <span><i class="fa-solid fa-file-code"></i> COMPLETE SAMPLE PROGRAM</span>
+                        <span style="font-size: 10px; opacity: 0.8; font-family: var(--font-mono); color: var(--neon-gold);">Step <span id="workspace-sample-program-step">1</span> of 30</span>
+                    </div>
+                    <pre style="margin: 0; padding: 10px; background: rgba(0,0,0,0.5); overflow: auto; flex-grow: 1; height: auto;"><code id="workspace-sample-program-code" style="font-family: var(--font-mono); font-size: 11.5px; color: #a4b9cc; white-space: pre; line-height: 1.45;"></code></pre>
+                </div>
+
+                <!-- Terminal Output -->
+                <div class="terminal-container" style="flex-grow: 1; height: auto; min-height: 120px;">
+                    <div class="terminal-header">
+                        <i class="fa-solid fa-terminal"></i> CONSOLE OUTPUT
+                    </div>
+                    <div class="terminal-body" id="terminal-body">
+                        <div class="terminal-log system">System ready. Waiting for test run...</div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- LEVEL UP CONGRATULATIONS MODAL -->
+    <div class="level-up-modal-backdrop" id="levelup-backdrop">
+        <div class="level-up-modal">
+            <div class="levelup-crown"><i class="fa-solid fa-crown"></i></div>
+            <h2>CERTIFICATION EARNED!</h2>
+            <p>You have mastered this AI domain and evolved into a higher engineer tier.</p>
+            <div class="levelup-stats">
+                <div class="levelup-stat-box">
+                    <span class="lbl">New Class</span>
+                    <span class="val" id="new-rank-val">Large Language Knight</span>
+                </div>
+                <div class="levelup-stat-box" style="display: none;">
+                    <span class="lbl">Salary Boosted</span>
+                    <span class="val" id="new-salary-val">$130,000</span>
+                </div>
+            </div>
+            <button class="levelup-confirm-btn" id="levelup-close-btn">CLAIM GLORY</button>
+        </div>
+    </div>
+        </div>
+    </div>
+
+    <!-- Core App Logic -->
+    <script src="app.js"></script>
+</body>
+</html>

@@ -6,159 +6,134 @@
    ========================================================================== */
 
 // --- 1. DYNAMIC STEP BUILDER SOURCE LINES ---
+const level0Lines = [
+    { code: "# Python Developer Foundations", desc: "Write a comment marking the file header.", err: "Header comment is missing." },
+    { code: "import sys", desc: "Import the system utilities library.", err: "Import sys is missing." },
+    { code: "import os", desc: "Import the operating system module.", err: "Import os is missing." },
+    { code: "print('System Host OS:', sys.platform)", desc: "Print the host operating system platform.", err: "Host OS print is missing." },
+    { code: "print('Current Directory:', os.getcwd())", desc: "Print the current working directory path.", err: "Current directory print is missing." },
+    { code: "env_user = os.getenv('USER', 'Guest')", desc: "Lookup the USER environment variable, defaulting to 'Guest'.", err: "env_user assignment is missing." },
+    { code: "print('Session User Identification:', env_user)", desc: "Print the session user identification name.", err: "Session user print is missing." },
+    { code: "def verify_env_paths():", desc: "Declare environment path verification method.", err: "verify_env_paths header is missing." },
+    { code: "    return 'PATH' in os.environ", desc: "Return true if PATH environment key is configured.", err: "PATH presence return is missing." },
+    { code: "print('Env Configured:', verify_env_paths())", desc: "Print the environment configuration verification output.", err: "Env configured print is missing." }
+];
+
 const level1Lines = [
-    { code: "import os", desc: "Import the OS operating system module.", err: "Import os is missing." },
-    { code: "from langchain_openai import ChatOpenAI", desc: "Import the ChatOpenAI causal engine.", err: "ChatOpenAI import is missing." },
-    { code: "from langchain_openai import OpenAIEmbeddings", desc: "Import the OpenAIEmbeddings model.", err: "OpenAIEmbeddings import is missing." },
-    { code: "from langchain_community.vectorstores import Chroma", desc: "Import the Chroma vector store client.", err: "Chroma import is missing." },
-    { code: "class AutonomousRAGAgent:", desc: "Declare the main AutonomousRAGAgent class.", err: "Class header is missing." },
-    { code: "    def __init__(self, db_path):", desc: "Define the class constructor, receiving the database folder path.", err: "Constructor definition is missing." },
-    { code: "        self.db_path = db_path", desc: "Save the database path to class parameters.", err: "self.db_path reference is missing." },
-    { code: "        self.embeddings = OpenAIEmbeddings()", desc: "Initialize the OpenAIEmbeddings encoder.", err: "self.embeddings initializer is missing." },
-    { code: "        self.db = Chroma(persist_directory=db_path, embedding_function=self.embeddings)", desc: "Establish Chroma DB connection with embedding models.", err: "self.db Chroma client is missing." },
-    { code: "        self.llm = ChatOpenAI(model=\"gpt-4o-mini\", temperature=0)", desc: "Initialize the ChatOpenAI language model in greedy decoding mode.", err: "self.llm ChatOpenAI client is missing." },
-    { code: "    def retrieve_context(self, query):", desc: "Declare the context retriever method.", err: "retrieve_context header is missing." },
-    { code: "        docs = self.db.similarity_search(query, k=3)", desc: "Query Chroma DB for the top 3 relevant documents matching query.", err: "similarity_search query is missing or k is not 3." },
-    { code: "        texts = [d.page_content for d in docs]", desc: "Loop through retrieved documents and extract page text content.", err: "Page text extraction list comprehension is missing." },
-    { code: "        return \"\\n\".join(texts)", desc: "Return the texts joined by newline characters.", err: "return statement is missing or not joining by newline." },
-    { code: "    def query_oracle(self, prompt):", desc: "Declare the main question answering query_oracle method.", err: "query_oracle header is missing." },
-    { code: "        context = self.retrieve_context(prompt)", desc: "Retrieve database context matching the user's prompt.", err: "retrieve_context call is missing." },
-    { code: "        system_prompt = f\"Use context: \\n{context}\"", desc: "Formulate system instructions containing retrieved facts.", err: "system_prompt formatting is missing." },
-    { code: "        messages = [{\"role\": \"system\", \"content\": system_prompt}]", desc: "Create a chat messages list containing the system instructions.", err: "system message dictionary is missing." },
-    { code: "        messages.append({\"role\": \"user\", \"content\": prompt})", desc: "Append user question to the messages list.", err: "user message append is missing." },
-    { code: "        response = self.llm.invoke(messages)", desc: "Invoke the language model with the conversation messages.", err: "self.llm.invoke call is missing." },
-    { code: "        return response.content", desc: "Extract and return the text content from response.", err: "response.content return is missing." },
-    { code: "    def add_document(self, content):", desc: "Create a helper method to ingest new documents.", err: "add_document header is missing." },
-    { code: "        from langchain_core.documents import Document", desc: "Import the Document models wrapper from LangChain core.", err: "Document import is missing." },
-    { code: "        doc = Document(page_content=content)", desc: "Instantiate a Document object wrapping the content string.", err: "Document instantiation is missing." },
-    { code: "        self.db.add_documents([doc])", desc: "Ingest the Document list into the Chroma database.", err: "self.db.add_documents call is missing." },
-    { code: "if __name__ == \"__main__\":", desc: "Create local validation entrypoint block.", err: "__main__ block is missing." },
-    { code: "    agent = AutonomousRAGAgent(\"./db\")", desc: "Instantiate local pipeline agent pointing to a db folder.", err: "AutonomousRAGAgent instantiation is missing." },
-    { code: "    agent.add_document(\"Chroma Gate code is: 7480\")", desc: "Ingest target secret code into vector store.", err: "add_document call is missing." },
-    { code: "    ans = agent.query_oracle(\"What is the code?\")", desc: "Run query search against oracle.", err: "query_oracle test call is missing." },
-    { code: "    print(ans)", desc: "Print the final oracle answers logs.", err: "print(ans) statement is missing." }
+    { code: "print('Starting Aether AI Sandbox...')", desc: "Print startup validation strings.", err: "print check is missing." },
+    { code: "user_name = 'Developer Neophyte'", desc: "Assign name string to variable user_name.", err: "user_name variable is missing." },
+    { code: "xp_points = 100", desc: "Initialize numeric points value to 100.", err: "xp_points variable is missing." },
+    { code: "tasks_completed = ['L0_basics']", desc: "Create a list tracking completed task ids.", err: "tasks_completed list is missing." },
+    { code: "active_role = 'AI Apprentice'", desc: "Define active role as AI Apprentice.", err: "active_role variable is missing." },
+    { code: "if xp_points > 50:", desc: "Create a conditional branch checking if XP exceeds 50.", err: "if condition check is missing." },
+    { code: "    active_role = 'AI Developer'", desc: "Elevate active role to AI Developer.", err: "active_role assignment is missing." },
+    { code: "for t in tasks_completed:", desc: "Create a loop iterating through completed tasks.", err: "for loop header is missing." },
+    { code: "    print('Ingested Task:', t)", desc: "Print the task loop element details.", err: "task element print is missing." },
+    { code: "def add_points(points, bonus=10):", desc: "Declare add_points function with default bonus 10.", err: "add_points header is missing." },
+    { code: "    return points + bonus", desc: "Return calculated total points summation.", err: "points summation return is missing." },
+    { code: "xp_points = add_points(xp_points)", desc: "Update XP points using add_points function.", err: "xp_points updates is missing." }
 ];
 
 const level2Lines = [
-    { code: "import cv2", desc: "Import the OpenCV computer vision framework.", err: "Import cv2 is missing." },
-    { code: "import torch", desc: "Import the PyTorch deep learning framework.", err: "Import torch is missing." },
-    { code: "from ultralytics import YOLO", desc: "Import the YOLOv8 object segmentation model class.", err: "YOLO import is missing." },
-    { code: "from diffusers import StableDiffusionImg2ImgPipeline", desc: "Import the Stable Diffusion image-to-image pipeline class.", err: "StableDiffusionImg2ImgPipeline import is missing." },
-    { code: "class AegisGuardCV:", desc: "Declare the main AegisGuardCV processing class.", err: "Class header is missing." },
-    { code: "    def __init__(self):", desc: "Define the class constructor initializer.", err: "Constructor definition is missing." },
-    { code: "        self.yolo = YOLO(\"yolov8n.pt\")", desc: "Load the YOLOv8 nano network weights.", err: "self.yolo instantiation is missing." },
-    { code: "        self.sd_pipe = StableDiffusionImg2ImgPipeline.from_pretrained(\"runwayml/stable-diffusion-v1-5\", torch_dtype=torch.float16)", desc: "Load the pre-trained Stable Diffusion v1.5 weights in FP16 precision.", err: "self.sd_pipe loader is missing or not in FP16." },
-    { code: "        self.sd_pipe = self.sd_pipe.to(\"cuda\")", desc: "Push the Stable Diffusion pipeline to the GPU CUDA context.", err: "self.sd_pipe.to('cuda') is missing." },
-    { code: "    def process_frame(self, frame):", desc: "Declare the frame processor method.", err: "process_frame header is missing." },
-    { code: "        results = self.yolo(frame)", desc: "Run the YOLO detector on the incoming image frame.", err: "self.yolo detection call is missing." },
-    { code: "        detected_objects = []", desc: "Initialize an empty list to collect object labels.", err: "detected_objects list is missing." },
-    { code: "        for box in results[0].boxes:", desc: "Loop through detected bounding boxes.", err: "box results loop is missing." },
-    { code: "            label = results[0].names[int(box.cls[0])]", desc: "Lookup the class name label from YOLO classifications list.", err: "Class name lookup is missing." },
-    { code: "            detected_objects.append(label)", desc: "Append the detected label name to the tracker array.", err: "append call is missing." },
-    { code: "        return detected_objects", desc: "Return the list of detected object labels.", err: "detected_objects return is missing." },
-    { code: "    def stylize_scene(self, init_image, prompt):", desc: "Declare the scene stylizer method.", err: "stylize_scene header is missing." },
-    { code: "        img = cv2.resize(init_image, (512, 512))", desc: "Resize the initial image to 512x512 to match diffusion requirements.", err: "cv2.resize is missing." },
-    { code: "        img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)", desc: "Convert OpenCV's default BGR image to RGB format.", err: "cv2.cvtColor is missing." },
-    { code: "        outputs = self.sd_pipe(prompt=prompt, image=img_rgb, strength=0.75)", desc: "Run Stable Diffusion image-to-image style transfer with 0.75 noise strength.", err: "self.sd_pipe execution is missing or strength is not 0.75." },
-    { code: "        return outputs.images[0]", desc: "Return the first generated artwork image.", err: "outputs return is missing." },
-    { code: "if __name__ == \"__main__\":", desc: "Create local validation entrypoint block.", err: "__main__ block is missing." },
-    { code: "    guard = AegisGuardCV()", desc: "Instantiate the AegisGuardCV processing client.", err: "AegisGuardCV instantiation is missing." },
-    { code: "    img = cv2.imread(\"assets/nlp_realm.jpg\")", desc: "Load a sample image from the assets folder.", err: "cv2.imread call is missing." },
-    { code: "    if img is not None:", desc: "Verify the image loaded successfully from disk.", err: "None verification is missing." },
-    { code: "        objects = guard.process_frame(img)", desc: "Detect objects inside the loaded image.", err: "process_frame test call is missing." },
-    { code: "        print(f\"Detected: {objects}\")", desc: "Print the list of detected targets.", err: "print detected objects is missing." },
-    { code: "        artwork = guard.stylize_scene(img, \"cyberpunk style\")", desc: "Redraw the image into a cyberpunk art style.", err: "stylize_scene test call is missing." },
-    { code: "        cv2.imwrite(\"artwork.jpg\", artwork)", desc: "Save the generated stylized artwork image back to disk.", err: "cv2.imwrite call is missing." },
-    { code: "        print(\"Artwork saved.\")", desc: "Print the final confirmation status logs.", err: "confirmation print is missing." }
+    { code: "import json", desc: "Import the json serializer module.", err: "Import json is missing." },
+    { code: "import fastapi", desc: "Import the fastapi framework.", err: "Import fastapi is missing." },
+    { code: "app = fastapi.FastAPI()", desc: "Initialize the FastAPI application client.", err: "app instantiation is missing." },
+    { code: "@app.get('/api/health')", desc: "Bind a GET route pointing to health endpoints.", err: "health endpoint route decorator is missing." },
+    { code: "def health_check():", desc: "Declare health check function handler.", err: "health_check header is missing." },
+    { code: "    return {'status': 'healthy', 'db': 'connected'}", desc: "Return database connectivity health payload.", err: "health dictionary return is missing." },
+    { code: "@app.post('/api/users')", desc: "Bind a POST route pointing to users endpoint.", err: "POST users route decorator is missing." },
+    { code: "async def create_user(data: dict):", desc: "Declare asynchronous create_user handler receiving a data dictionary.", err: "create_user header is missing." },
+    { code: "    db_record = {'id': 1, 'email': data.get('email')}", desc: "Extract user email and generate simulated database record.", err: "db_record dict is missing." },
+    { code: "    return {'user': db_record, 'created': True}", desc: "Return success creation payload.", err: "return record dictionary is missing." }
 ];
 
 const level3Lines = [
-    { code: "import gymnasium as gym", desc: "Import the Gymnasium environment building library.", err: "Import gymnasium is missing." },
-    { code: "import numpy as np", desc: "Import the NumPy numerical matrices package.", err: "Import numpy is missing." },
-    { code: "from stable_baselines3 import PPO", desc: "Import the Proximal Policy Optimization reinforcement algorithm class.", err: "PPO import is missing." },
-    { code: "class GolemCombatEnv(gym.Env):", desc: "Declare custom GolemCombatEnv class inheriting from gym.Env.", err: "Class header inheriting from gym.Env is missing." },
-    { code: "    def __init__(self):", desc: "Define the Gymnasium constructor method.", err: "Constructor definition is missing." },
-    { code: "        super(GolemCombatEnv, self).__init__()", desc: "Trigger parent Gymnasium environment constructor settings.", err: "super constructor call is missing." },
-    { code: "        self.action_space = gym.spaces.Discrete(4)", desc: "Define a discrete action space accommodating 4 Golem maneuvers.", err: "self.action_space Discrete space is missing." },
-    { code: "        self.observation_space = gym.spaces.Box(low=0, high=1, shape=(8,), dtype=np.float32)", desc: "Define observation Box spaces mapping 8 floating-point variables.", err: "self.observation_space Box space mapping 8 values is missing." },
-    { code: "        self.state = np.random.rand(8)", desc: "Initialize Golem state variables with random floats.", err: "self.state initialization is missing." },
-    { code: "    def reset(self, seed=None):", desc: "Declare environment reset method.", err: "reset header is missing." },
-    { code: "        super().reset(seed=seed)", desc: "Trigger base class Gymnasium seed parameters resets.", err: "super().reset call is missing." },
-    { code: "        self.state = np.random.rand(8)", desc: "Reset observation state values to new random values.", err: "state reset assignment is missing." },
-    { code: "        return self.state, {}", desc: "Return the state values and an empty metadata info dictionary.", err: "return state tuple is missing." },
-    { code: "    def step(self, action):", desc: "Declare step simulator actions execution method.", err: "step header is missing." },
-    { code: "        self.state = np.random.rand(8)", desc: "Update internal environment state coordinates.", err: "state updates are missing." },
-    { code: "        reward = 1.0 if action == 1 else -1.0", desc: "Calculate action step reward: 1.0 for action 1, else -1.0.", err: "reward calculations are missing." },
-    { code: "        terminated = False", desc: "Set terminated state variable to False.", err: "terminated flag is missing." },
-    { code: "        truncated = False", desc: "Set truncated state variable to False.", err: "truncated flag is missing." },
-    { code: "        return self.state, reward, terminated, truncated, {}", desc: "Return state observation, reward, flags, and info dictionary.", err: "step return tuple is missing." },
-    { code: "if __name__ == \"__main__\":", desc: "Create local validation entrypoint block.", err: "__main__ block is missing." },
-    { code: "    env = GolemCombatEnv()", desc: "Instantiate the GolemCombatEnv simulation board.", err: "GolemCombatEnv instantiation is missing." },
-    { code: "    obs, info = env.reset()", desc: "Reset the environment parameters to baseline state.", err: "env.reset call is missing." },
-    { code: "    action = env.action_space.sample()", desc: "Extract a random action sample from discrete action space.", err: "action sampling call is missing." },
-    { code: "    obs, reward, term, trunc, info = env.step(action)", desc: "Execute a step in the simulation using the sampled action.", err: "env.step call is missing." },
-    { code: "    print(f\"Obs: {obs}, Reward: {reward}\")", desc: "Print current environment observation metrics.", err: "status print is missing." },
-    { code: "    model = PPO(\"MlpPolicy\", env, verbose=1)", desc: "Initialize the PPO agent model on GolemEnv using Multi-Layer Perceptron policy.", err: "PPO model initialization is missing." },
-    { code: "    print(\"Training Golem PPO...\")", desc: "Print training startup message.", err: "training logs print is missing." },
-    { code: "    model.learn(total_timesteps=50000)", desc: "Train policy network parameters for exactly 50,000 steps.", err: "model.learn call is missing or timesteps is not 50000." },
-    { code: "    model.save(\"golem_policy\")", desc: "Save the optimized policy model weights back to disk.", err: "model.save call is missing." },
-    { code: "    print(\"Model saved.\")", desc: "Print final confirmation logs.", err: "confirmation print is missing." }
+    { code: "import numpy as np", desc: "Import the NumPy math package.", err: "Import numpy is missing." },
+    { code: "import pandas as pd", desc: "Import the Pandas Dataframe library.", err: "Import pandas is missing." },
+    { code: "matrix_a = np.array([[1, 2], [3, 4]])", desc: "Create a 2x2 NumPy matrix array.", err: "matrix_a is missing." },
+    { code: "matrix_b = np.array([[5, 6], [7, 8]])", desc: "Create another 2x2 NumPy matrix array.", err: "matrix_b is missing." },
+    { code: "dot_product = np.dot(matrix_a, matrix_b)", desc: "Calculate dot product multiplication.", err: "dot_product is missing." },
+    { code: "df = pd.DataFrame({'scores': [85, 90, 95]})", desc: "Create a Pandas DataFrame containing scores list.", err: "df DataFrame is missing." },
+    { code: "mean_score = df['scores'].mean()", desc: "Calculate mean average of scores list.", err: "mean_score is missing." },
+    { code: "std_dev = df['scores'].std()", desc: "Calculate standard deviation of scores.", err: "std_dev is missing." },
+    { code: "def gradient_step(w, lr, grad):", desc: "Declare gradient_step updater method.", err: "gradient_step header is missing." },
+    { code: "    return w - lr * grad", desc: "Return updated parameter subtracting lr scaled gradient.", err: "descent step calculation return is missing." }
 ];
 
 const level4Lines = [
-    { code: "import os", desc: "Import the OS operating system module.", err: "Import os is missing." },
-    { code: "from crewai import Agent, Task, Crew, Process", desc: "Import the CrewAI Agent, Task, Crew, and Process modules.", err: "CrewAI imports are missing." },
-    { code: "from langchain_openai import ChatOpenAI", desc: "Import ChatOpenAI language model wrapper class.", err: "ChatOpenAI import is missing." },
-    { code: "llm = ChatOpenAI(model=\"gpt-4o-mini\", temperature=0.2)", desc: "Initialize language model in temperature 0.2 format.", err: "llm instantiation is missing or not gpt-4o-mini." },
-    { code: "arch_role = \"Systems Architect\"", desc: "Set the Systems Architect role string variable.", err: "arch_role is missing." },
-    { code: "arch_goal = \"Design secure microservices blueprints\"", desc: "Set Systems Architect goal string variable.", err: "arch_goal is missing." },
-    { code: "arch_backstory = \"Expert cloud systems architect.\"", desc: "Set Systems Architect backstory string variable.", err: "arch_backstory is missing." },
-    { code: "architect = Agent(role=arch_role, goal=arch_goal, backstory=arch_backstory, llm=llm)", desc: "Instantiate Systems Architect agent object.", err: "architect agent is missing." },
-    { code: "coder_role = \"Senior Constructor\"", desc: "Set the Developer role string variable.", err: "coder_role is missing." },
-    { code: "coder_goal = \"Implement clean modular Python code\"", desc: "Set Developer goal string variable.", err: "coder_goal is missing." },
-    { code: "coder_backstory = \"Full stack Python coding wizard.\"", desc: "Set Developer backstory string variable.", err: "coder_backstory is missing." },
-    { code: "coder = Agent(role=coder_role, goal=coder_goal, backstory=coder_backstory, llm=llm)", desc: "Instantiate Code Constructor developer agent.", err: "coder agent is missing." },
-    { code: "qa_role = \"Quality Assurance Validator\"", desc: "Set the QA validator role string variable.", err: "qa_role is missing." },
-    { code: "qa_goal = \"Identify logic vulnerabilities and write tests\"", desc: "Set QA validator goal string variable.", err: "qa_goal is missing." },
-    { code: "qa_backstory = \"Ruthless automated software tester.\"", desc: "Set QA validator backstory string variable.", err: "qa_backstory is missing." },
-    { code: "qa = Agent(role=qa_role, goal=qa_goal, backstory=qa_backstory, llm=llm)", desc: "Instantiate QA validator agent.", err: "qa agent is missing." },
-    { code: "t1_desc = \"Design database schemas\"", desc: "Set database blueprint task description.", err: "t1_desc is missing." },
-    { code: "task1 = Task(description=t1_desc, agent=architect)", desc: "Create database schema design task bound to architect agent.", err: "task1 object is missing." },
-    { code: "t2_desc = \"Write SQLite wrapper classes\"", desc: "Set database coding implementation task description.", err: "t2_desc is missing." },
-    { code: "task2 = Task(description=t2_desc, agent=coder)", desc: "Create database connection coding task bound to developer agent.", err: "task2 object is missing." },
-    { code: "t3_desc = \"Write unit assertions\"", desc: "Set test cases verification task description.", err: "t3_desc is missing." },
-    { code: "task3 = Task(description=t3_desc, agent=qa)", desc: "Create QA validation task bound to QA agent.", err: "task3 object is missing." },
-    { code: "agents_list = [architect, coder, qa]", desc: "Create an agents list array.", err: "agents_list is missing." },
-    { code: "tasks_list = [task1, task2, task3]", desc: "Create a tasks list array.", err: "tasks_list is missing." },
-    { code: "crew_process = Process.sequential", desc: "Select sequential Process modes variables.", err: "crew_process is missing." },
-    { code: "crew = Crew(agents=agents_list, tasks=tasks_list, process=crew_process)", desc: "Instantiate Crew controller containing agents and tasks.", err: "crew instantiation is missing." },
-    { code: "result = crew.kickoff()", desc: "Kickoff the Crew collaborative swarms processes.", err: "crew.kickoff call is missing." },
-    { code: "print(result)", desc: "Print the final collaborative logs output.", err: "result print is missing." },
-    { code: "print(\"Agent swarm software construction cycle complete.\")", desc: "Print execution success status.", err: "success print is missing." },
-    { code: "print(\"System ready for autonomous tasks processing.\")", desc: "Print system status transmission logs.", err: "system ready print is missing." }
+    { code: "from sklearn.linear_model import LinearRegression", desc: "Import the LinearRegression linear model classifier.", err: "LinearRegression import is missing." },
+    { code: "from sklearn.model_selection import train_test_split", desc: "Import the dataset train_test_split tool.", err: "train_test_split import is missing." },
+    { code: "X = [[1], [2], [3], [4]]", desc: "Initialize features matrix sample rows.", err: "X features list is missing." },
+    { code: "y = [2, 4, 6, 8]", desc: "Initialize labels list elements.", err: "y labels list is missing." },
+    { code: "X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25)", desc: "Split features & labels with test size 0.25.", err: "train_test_split call is missing or incorrect size." },
+    { code: "model = LinearRegression()", desc: "Instantiate scikit-learn LinearRegression model client.", err: "LinearRegression instantiation is missing." },
+    { code: "model.fit(X_train, y_train)", desc: "Fit linear model using training partitions.", err: "model.fit call is missing." },
+    { code: "predictions = model.predict(X_test)", desc: "Run predictions on the test feature partitions.", err: "model.predict call is missing." },
+    { code: "accuracy_score = model.score(X_test, y_test)", desc: "Calculate model coefficient score.", err: "model.score evaluation is missing." },
+    { code: "print('ML Score Coefficient:', accuracy_score)", desc: "Print evaluated ML score log.", err: "score print is missing." }
 ];
 
 const level5Lines = [
-    { code: "import torch", desc: "Import the PyTorch framework.", err: "Import torch is missing." },
-    { code: "from transformers import AutoModelForCausalLM, AutoTokenizer", desc: "Import Auto Causal LM and Tokenizers from Hugging Face.", err: "Auto causal classes imports are missing." },
-    { code: "from optimum.gptq import GPTQQuantizer", desc: "Import the GPTQ post training quantization manager.", err: "GPTQQuantizer import is missing." },
-    { code: "model_id = \"facebook/opt-125m\"", desc: "Define the model ID string variable.", err: "model_id is missing." },
-    { code: "print(f\"Loading tokenizer for: {model_id}\")", desc: "Print tokenizer loading details.", err: "tokenizer print is missing." },
-    { code: "tokenizer = AutoTokenizer.from_pretrained(model_id)", desc: "Load the pre-trained model tokenizer configurations.", err: "tokenizer loader is missing." },
-    { code: "print(\"Loading FP16 model weights parameters...\")", desc: "Print FP16 weights loading logs.", err: "weights log print is missing." },
-    { code: "model = AutoModelForCausalLM.from_pretrained(model_id, torch_dtype=torch.float16, device_map=\"auto\")", desc: "Load model causal weights in FP16 precision.", err: "AutoModelForCausalLM is missing or not in FP16." },
-    { code: "print(\"Initializing GPTQ compression engine...\")", desc: "Print quantization setup startup logs.", err: "quantization setup print is missing." },
-    { code: "quant_bits = 4", desc: "Set target quantization bits depth to 4.", err: "quant_bits is missing or not 4." },
-    { code: "quant_dataset = \"c4\"", desc: "Set target calibration dataset to 'c4'.", err: "quant_dataset is missing." },
-    { code: "quantizer = GPTQQuantizer(bits=quant_bits, dataset=quant_dataset, model_seqlen=2048)", desc: "Initialize GPTQQuantizer with bits, dataset, and sequence length.", err: "quantizer instantiation is missing." },
-    { code: "print(\"Starting quantization calibration...\")", desc: "Print quantization calibration start logs.", err: "calibration log print is missing." },
-    { code: "quantized_model = quantizer.quantize_model(model, tokenizer)", desc: "Execute quantization optimizer calibration.", err: "quantize_model call is missing." },
-    { code: "print(\"Quantization complete. Saving outputs...\")", desc: "Print quantization finish status logs.", err: "quantization save log print is missing." },
-    { code: "output_dir = \"./quantized_model\"", desc: "Define the export directory path string variable.", err: "output_dir is missing." },
-    { code: "quantized_model.save_pretrained(output_dir)", desc: "Save the optimized causal quantized weights.", err: "save_pretrained is missing." },
-    { code: "tokenizer.save_pretrained(output_dir)", desc: "Save the tokenizer configurations into the output folder.", err: "tokenizer.save_pretrained call is missing." },
-    { code: "print(\"MLOps model compression validation complete.\")", desc: "Print validation completed logs.", err: "compression validation print is missing." },
-    { code: "print(\"System ready for edge Triton deployment.\")", desc: "Print the final Triton deployment readiness status logs.", err: "Triton ready print is missing." }
+    { code: "import torch", desc: "Import PyTorch deep learning framework.", err: "Import torch is missing." },
+    { code: "import torch.nn as nn", desc: "Import PyTorch neural network modules wrapper.", err: "nn import is missing." },
+    { code: "class AetherNet(nn.Module):", desc: "Declare custom AetherNet class inheriting from nn.Module.", err: "Class header inheriting from nn.Module is missing." },
+    { code: "    def __init__(self):", desc: "Define neural network constructor.", err: "Constructor definition is missing." },
+    { code: "        super(AetherNet, self).__init__()", desc: "Trigger parent nn.Module constructors initialization.", err: "super constructor call is missing." },
+    { code: "        self.linear1 = nn.Linear(8, 16)", desc: "Initialize a linear input layer with 8 inputs and 16 outputs.", err: "self.linear1 linear layer is missing." },
+    { code: "        self.relu = nn.ReLU()", desc: "Initialize a ReLU activation function module.", err: "self.relu activator module is missing." },
+    { code: "        self.linear2 = nn.Linear(16, 1)", desc: "Initialize output layer mapping 16 inputs to 1 output.", err: "self.linear2 layer is missing." },
+    { code: "    def forward(self, x):", desc: "Declare forward propagation method.", err: "forward header is missing." },
+    { code: "        out = self.linear2(self.relu(self.linear1(x)))", desc: "Compute output values passing input x through linear, relu, and output layers.", err: "forward layers updates calculations are missing." },
+    { code: "        return out", desc: "Return calculated outputs values tensor.", err: "out return is missing." }
+];
+
+const level6Lines = [
+    { code: "from langchain_openai import ChatOpenAI", desc: "Import Langchain ChatOpenAI API module.", err: "ChatOpenAI import is missing." },
+    { code: "from langchain_core.prompts import ChatPromptTemplate", desc: "Import ChatPromptTemplate utilities.", err: "ChatPromptTemplate import is missing." },
+    { code: "llm_client = ChatOpenAI(model='gpt-4o-mini', temperature=0.7)", desc: "Instantiate ChatOpenAI client with temperature 0.7.", err: "llm_client instantiation is missing." },
+    { code: "system_msg = 'You are Aethera, oracle AI mentor.'", desc: "Formulate system instructions string.", err: "system_msg is missing." },
+    { code: "prompt_tmpl = ChatPromptTemplate.from_messages([('system', system_msg), ('user', '{input}')])", desc: "Build chat messages template mapping system and user inputs.", err: "prompt_tmpl template builder is missing." },
+    { code: "def generate_response(query_text):", desc: "Declare response generator helper.", err: "generate_response header is missing." },
+    { code: "    chain = prompt_tmpl | llm_client", desc: "Construct a LangChain runnable pipe connecting prompt and LLM.", err: "chain connection pipeline is missing." },
+    { code: "    res = chain.invoke({'input': query_text})", desc: "Invoke the chain with query input.", err: "chain.invoke is missing." },
+    { code: "    return res.content", desc: "Return final content output string.", err: "res.content return statement is missing." }
+];
+
+const level7Lines = [
+    { code: "class AetherAgent:", desc: "Declare the AetherAgent tool calling coordinator class.", err: "Class header is missing." },
+    { code: "    def __init__(self):", desc: "Define constructor method.", err: "Constructor definition is missing." },
+    { code: "        self.tools = {'search_web': lambda: 'Aether gate code: 9942'}", desc: "Establish tool map connecting key search_web to a returns lambda function.", err: "self.tools dictionary is missing." },
+    { code: "    def call_tool(self, tool_name):", desc: "Declare tool calling executor.", err: "call_tool header is missing." },
+    { code: "        if tool_name in self.tools:", desc: "Verify tool exists inside registered tools map.", err: "presence check is missing." },
+    { code: "            return self.tools[tool_name]()", desc: "Trigger tool callback and return output.", err: "tool trigger returns is missing." },
+    { code: "        return 'Tool not found'", desc: "Return error fallback strings.", err: "fallback return is missing." },
+    { code: "agent_runner = AetherAgent()", desc: "Instantiate AetherAgent client.", err: "AetherAgent instance is missing." },
+    { code: "res_val = agent_runner.call_tool('search_web')", desc: "Execute registered search_web tool.", err: "call_tool test run is missing." },
+    { code: "print('Search Result:', res_val)", desc: "Print search result outputs log.", err: "result print is missing." }
+];
+
+const level8Lines = [
+    { code: "import sounddevice as sd", desc: "Import the sounddevice audio recording framework.", err: "Import sounddevice is missing." },
+    { code: "import numpy as np", desc: "Import NumPy numerical metrics.", err: "Import numpy is missing." },
+    { code: "def record_audio_chunk(duration, fs=16000):", desc: "Declare record_audio_chunk helper with default frequency 16000.", err: "record_audio_chunk header is missing." },
+    { code: "    audio_data = sd.rec(int(duration * fs), samplerate=fs, channels=1)", desc: "Record single-channel audio using sounddevice rec method.", err: "sd.rec call is missing." },
+    { code: "    sd.wait()", desc: "Wait until audio recording stream finishes writing to buffers.", err: "sd.wait call is missing." },
+    { code: "    return audio_data", desc: "Return recorded audio float array.", err: "audio_data return is missing." },
+    { code: "def process_speech(audio_bytes):", desc: "Declare speech processor transcriber mock.", err: "process_speech header is missing." },
+    { code: "    rms_amplitude = np.sqrt(np.mean(audio_bytes**2))", desc: "Calculate root-mean-square amplitude of audio signals.", err: "rms calculation is missing." },
+    { code: "    return 'Voice command parsed' if rms_amplitude > 0.01 else 'Silence'", desc: "Return speech command status string depending on amplitude threshold.", err: "status string checks return is missing." }
+];
+
+const level9Lines = [
+    { code: "import docker", desc: "Import docker SDK client library.", err: "Import docker is missing." },
+    { code: "docker_client = docker.from_env()", desc: "Instantiate Docker connection client from environment configs.", err: "docker.from_env call is missing." },
+    { code: "def deploy_fastapi_pod(image_name):", desc: "Declare container deployment helper.", err: "deploy_fastapi_pod header is missing." },
+    { code: "    container = docker_client.containers.run(", desc: "Begin container run parameters initialization...", err: "containers.run call is missing." },
+    { code: "        image=image_name,", desc: "Define Docker container image name parameter.", err: "image parameter is missing." },
+    { code: "        ports={'80/tcp': 8080},", desc: "Expose internal TCP port 80 to host port 8080.", err: "ports mapping parameter is missing." },
+    { code: "        detach=True", desc: "Set container to run in detached background threads mode.", err: "detach parameter is missing." },
+    { code: "    )", desc: "Close containers run method parameters.", err: "closing parentheses is missing." },
+    { code: "    return container.id", desc: "Return deployed container unique tracking identifier string.", err: "container.id return statement is missing." }
 ];
 
 // Helper to escape HTML tags in strings
@@ -167,102 +142,192 @@ function escapeHTML(str) {
     return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
 }
 
-// --- Base Metadata for all 5 Certification Realms ---
+// --- Base Metadata for all 10 Certification Realms ---
 const realms = {
-    1: {
-        id: 1,
-        name: "Valley of Whispers",
-        topic: "NLP & LLMs",
-        certTitle: "NLP & LLM Agentic Architect Certification",
+    0: {
+        id: 0,
+        name: "Developer Foundation",
+        topic: "Dev Basics & Git",
+        certTitle: "Developer Foundation & Environments Certification",
         image: "assets/nlp_realm.jpg",
         xpReward: 100,
-        salaryReward: 130000,
-        rankTitle: "Large Language Knight",
-        techStack: ["Python", "LangChain", "ChromaDB", "OpenAI API", "Hugging Face"],
-        lore: "The ancient text whispers in the Valley have corrupted, leaking static. Decipher the fragments, configure a Vector Database, and forge an Autonomous RAG Agent capable of calling local weapons tools and remembering past chats to restore order.",
+        salaryReward: 0,
+        rankTitle: "Software Neophyte",
+        techStack: ["VS Code", "Git", "GitHub", "Terminal", "Bash", "OS Basics"],
+        lore: "Before venturing into artificial intelligence, you must master the command console. Configure your OS environment parameters, open the terminal, and initialize your first local Git code repository to build files.",
         glossary: [
-            { term: "RAG", def: "Retrieval-Augmented Generation. A pattern that queries a vector database for relevant facts matching a user's prompt, appending those facts into the LLM context so it generates highly accurate responses." },
-            { term: "Vector Database (Chroma)", def: "A specialized index engine that saves numerical vector arrays (embeddings) representing sentence meanings, allowing high-speed cosine distance similarity lookups." },
-            { term: "Embedding Model", def: "A deep learning neural transformer that translates text strings into dense floating-point arrays containing high-dimensional semantic definitions." }
+            { term: "Environment Variables", def: "System-wide key-value pairs stored by the operating system that define configuration pathways, API keys, and execution environment states." },
+            { term: "Git VCS", def: "A distributed Version Control System that tracks code alterations across files, allowing engineers to undo mistakes and merge parallel branches." },
+            { term: "JSON", def: "JavaScript Object Notation. A lightweight text-based data interchange format widely used for client-server API payloads." }
+        ]
+    },
+    1: {
+        id: 1,
+        name: "Master Python 🐍",
+        topic: "Python Programming",
+        certTitle: "Python Programming & Algorithms Certification",
+        image: "assets/nlp_realm.jpg",
+        xpReward: 120,
+        salaryReward: 0,
+        rankTitle: "Python Engineer Apprentice",
+        techStack: ["Python 3", "Pip", "Virtualenv", "OOP", "Lambda", "Scrapers"],
+        lore: "Master the logic engine of modern AI. Learn variable mappings, logic blocks, loops iteration controls, functional scoping, OOP structures, and libraries creation to compile scrapers and trackers.",
+        glossary: [
+            { term: "List Comprehension", def: "A concise syntax for creating new lists in Python by applying expressions to elements inside an iterable." },
+            { term: "Lambda Function", def: "An anonymous inline function declared in a single line, useful for quick callbacks or calculations." },
+            { term: "Virtualenv", def: "An isolated environment tool that locks project-specific dependency packages without polluting global libraries." }
         ]
     },
     2: {
         id: 2,
-        name: "Mirage Canyon",
-        topic: "Computer Vision",
-        certTitle: "Computer Vision & Diffusion Shaman Certification",
+        name: "Software Development",
+        topic: "Git, SQL & FastAPI",
+        certTitle: "Software Development & Web backend Certification",
         image: "assets/cv_realm.jpg",
         xpReward: 150,
-        salaryReward: 170000,
-        rankTitle: "Computer Vision Shaman",
-        techStack: ["OpenCV", "YOLOv8", "PyTorch", "Stable Diffusion", "Diffusers"],
-        lore: "Mirages in the Canyon are blinding travelers with illusory projections. Build a real-time YOLOv8 object detection pipeline that identifies target objects on a live feed, and feeds crop-coordinates into a Stable Diffusion image-to-image loop to generate stylised, crystal-clear path illustrations.",
+        salaryReward: 0,
+        rankTitle: "Software Developer",
+        techStack: ["PostgreSQL", "SQL", "FastAPI", "Uvicorn", "APIs", "REST"],
+        lore: "Build software surrounding AI models. Orchestrate Git merges, write relational SQL queries to PostgreSQL, construct HTTP request handlers, and deploy FastAPI endpoints serving JSON payloads.",
         glossary: [
-            { term: "YOLOv8", def: "You Only Look Once (v8). A state-of-the-art real-time convolutional neural network that detects bounding boxes and object segmentations in visual frames in milliseconds." },
-            { term: "Stable Diffusion", def: "A latent diffusion generative AI model that produces highly realistic or artistic images from text prompts or base image outlines." },
-            { term: "Image-to-Image (Img2Img)", def: "A SD pipeline variant that intakes a starting photo, introduces controllable noise, and repaints it according to a text guide." }
+            { term: "FastAPI", def: "A modern, high-speed Python web framework for building REST APIs with auto-generated Swagger documentation." },
+            { term: "PostgreSQL", def: "A powerful, open-source object-relational database management system supporting complex tables joins and foreign keys." },
+            { term: "HTTP Route Status", def: "Numerical status codes returned by backend servers indicating result states: e.g. 200 OK, 201 Created, 404 Not Found." }
         ]
     },
     3: {
         id: 3,
-        name: "Forge of Destiny",
-        topic: "Reinforcement Learning",
-        certTitle: "Deep Reinforcement Learning Combat Certification",
+        name: "Mathematics & Data",
+        topic: "Data Analysis & Math",
+        certTitle: "AI Mathematics & Data Science Certification",
         image: "assets/rl_realm.jpg",
-        xpReward: 200,
-        salaryReward: 220000,
-        rankTitle: "Deep Reinforcement Knight",
-        techStack: ["Gymnasium", "Stable-Baselines3", "PPO", "Neural Networks", "Pygame"],
-        lore: "The automated Iron Golems protecting the Forge have forgotten their combat algorithms. Design a custom Gymnasium environment representing the combat arena. Apply the Proximal Policy Optimization (PPO) algorithm to train a deep neural policy network, optimizing combat rewards until the Golem achieves an 85% win rate against the holographic training dummies.",
+        xpReward: 180,
+        salaryReward: 0,
+        rankTitle: "Mathematical Data Miner",
+        techStack: ["NumPy", "Pandas", "Matplotlib", "Algebra", "Calculus"],
+        lore: "Understand the mathematical matrices behind neural networks. Compute dot products, calculate variance distributions, formulate partial derivatives, and build gradient descent models.",
         glossary: [
-            { term: "PPO", def: "Proximal Policy Optimization. An actor-critic policy gradient RL algorithm that optimizes policies incrementally, using clipping to avoid unstable shifts." },
-            { term: "Gymnasium", def: "A standardized API library used to construct interactive environment models with reset-loop functions, exposing step action scopes and numeric observations." },
-            { term: "Policy Network", def: "A deep neural network that evaluates environment observations and decides the optimal action probability distributions." }
+            { term: "Gradient Descent", def: "An optimization algorithm that minimizes cost functions iteratively by taking steps proportional to the negative gradient." },
+            { term: "Pandas DataFrame", def: "A 2-dimensional labeled data structure with columns of potentially different types, resembling spreadsheets or databases." },
+            { term: "Dot Product", def: "An algebraic operation that takes two equal-length sequences of numbers and returns a single numeric value." }
         ]
     },
     4: {
         id: 4,
-        name: "Citadel of Minds",
-        topic: "Multi-Agent Swarms",
-        certTitle: "Multi-Agent Systems & Swarm Engineering Certification",
+        name: "Machine Learning 🤖",
+        topic: "scikit-learn Modeling",
+        certTitle: "Machine Learning Modeling Certification",
         image: "assets/agents_realm.jpg",
-        xpReward: 250,
-        salaryReward: 280000,
-        rankTitle: "Multi-Agent Overlord",
-        techStack: ["CrewAI", "LangGraph", "AutoGen", "LLaMA 3", "JSON Schemas"],
-        lore: "The Citadel's main thinking core is offline. Reconnect it by programming a collaborative multi-agent collective. You must write the orchestration loop creating three distinct agents: a Systems Architect, a Code Constructor, and a Quality Validator. Instruct them to automatically draft, compile, review, and patch microservices in an autonomous loop.",
+        xpReward: 200,
+        salaryReward: 0,
+        rankTitle: "Machine Learning Engineer",
+        techStack: ["scikit-learn", "Supervised Learning", "Regression", "Random Forest"],
+        lore: "Build predictive classifiers and regressions. Design data splits, train Random Forests using features/labels vectors, and evaluate accuracy metrics using scikit-learn libraries.",
         glossary: [
-            { term: "CrewAI", def: "An agentic framework that packages LLM prompts into structured roles (agents) and defines execution chains (tasks, crews) with custom tools." },
-            { term: "LangGraph", def: "A state-based orchestration library by LangChain that models multi-agent behaviors as cyclical graphs with node actions and edge routing." },
-            { term: "Sequential Process", def: "An execution topology where task outputs are fed directly into the following agent's input context sequentially, mimicking an assembly line." }
+            { term: "Random Forest", def: "An ensemble learning method that trains multiple decision trees and averages their predictions to improve accuracy and control overfitting." },
+            { term: "Train/Test Split", def: "A technique that partitions dataset files into training subsets (to fit weights) and testing subsets (to evaluate predictions)." },
+            { term: "Overfitting", def: "A modeling error where an algorithm fits training noise too closely, failing to generalize to unseen testing data." }
         ]
     },
     5: {
         id: 5,
-        name: "Ethereal Nexus",
-        topic: "MLOps & Quantization",
-        certTitle: "MLOps, Triton, & Edge Quantization Archmage Certification",
+        name: "Deep Learning 🧠",
+        topic: "PyTorch Neural Nets",
+        certTitle: "Deep Neural Networks Certification",
         image: "assets/ops_realm.jpg",
-        xpReward: 300,
-        salaryReward: 350000,
-        rankTitle: "Edge AI Archmage",
-        techStack: ["Docker", "Triton Inference Server", "TensorRT", "GPTQ / GGUF", "Kubernetes"],
-        lore: "The portal at the Ethereal Nexus requires hyper-speed calculations but has limited energy power. Optimize a massive 70B parameter LLM for local deployment. Write the Quantization script converting FP16 weights to 4-bit using GPTQ. Package the model inside Docker with Triton Inference Server, optimizing CUDA caches to handle 10,000 requests per second with microsecond latency.",
+        xpReward: 220,
+        salaryReward: 0,
+        rankTitle: "Deep Learning Specialist",
+        techStack: ["PyTorch", "torch.nn", "CNN", "Transformer", "Linear Layers"],
+        lore: "Construct deep neural network systems. Write weights initializers, compile forward activation propagations, implement backpropagation cost updates, and run PyTorch models.",
         glossary: [
-            { term: "GPTQ", def: "Generalized Post-Training Quantization. An algorithm that quantizes weights using second-order Taylor approximations, correcting errors on a dataset slice." },
-            { term: "Triton Server", def: "NVIDIA's multi-framework inference server designed for high-concurrency model execution, supporting dynamic batching and concurrent model queues." },
-            { term: "Quantization", def: "The process of down-sampling neural network parameters from high-precision data types (FP16/FP32) to low-precision types (INT4/INT8) to save RAM." }
+            { term: "Backpropagation", def: "An algorithm that calculates gradient partial derivatives of loss functions with respect to neural network weights, propagating errors backward." },
+            { term: "CNN", def: "Convolutional Neural Network. A class of deep neural networks commonly applied to analyzing visual imagery grids." },
+            { term: "Self-Attention", def: "An attention mechanism in Transformers relating different positions of a single sequence to compute its representation." }
+        ]
+    },
+    6: {
+        id: 6,
+        name: "Generative AI 🚀",
+        topic: "Prompt Engineering & RAG",
+        certTitle: "Generative AI & LLM Systems Certification",
+        image: "assets/nlp_realm.jpg",
+        xpReward: 250,
+        salaryReward: 0,
+        rankTitle: "Generative AI Engineer",
+        techStack: ["LangChain", "OpenAI API", "RAG", "ChromaDB", "Few-shot"],
+        lore: "Build LLM applications. Master prompt templates formatting, token boundaries, role configurations, and document chunking, indexing text segments into vector database stores.",
+        glossary: [
+            { term: "Tokens", def: "Sub-word string fragments generated by text encoders that act as the atomic inputs for language model prediction matrices." },
+            { term: "Context Window", def: "The maximum amount of prompt token resources an LLM can consume in a single forward pass inference loop." },
+            { term: "RAG Chunking", def: "The process of splitting large documents into tiny contextual paragraphs before indexing to fit search matches." }
+        ]
+    },
+    7: {
+        id: 7,
+        name: "AI Agents 🔥",
+        topic: "Autonomous Systems",
+        certTitle: "Autonomous AI Agents & Swarms Certification",
+        image: "assets/cv_realm.jpg",
+        xpReward: 280,
+        salaryReward: 0,
+        rankTitle: "AI Agent Overlord",
+        techStack: ["CrewAI", "LangGraph", "Tool Calling", "Memory Registers", "Swarms"],
+        lore: "Build autonomous JARVIS assistant crews. Write tool calling schemas allowing models to call APIs, set planning graph loops, and execute multi-agent task networks.",
+        glossary: [
+            { term: "Tool Calling", def: "A model feature enabling LLMs to output structured JSON arguments mapping function schemas, instructing host runners to call web tools." },
+            { term: "Multi-Agent System", def: "A swarm topology where independent specialized agent nodes collaborate on tasks, exchanging messages to solve complex goals." },
+            { term: "Agent Loop", def: "An autonomous cycle where agents evaluate tools outcomes, plan next actions, and repeat until the target task terminates." }
+        ]
+    },
+    8: {
+        id: 8,
+        name: "Voice AI 🎙️",
+        topic: "Audio & Speech Streams",
+        certTitle: "Voice AI & Real-time Agents Certification",
+        image: "assets/rl_realm.jpg",
+        xpReward: 300,
+        salaryReward: 0,
+        rankTitle: "Voice Agent Specialist",
+        techStack: ["Whisper STT", "WebRTC", "Audio Streams", "TTS Synthesis", "WebSockets"],
+        lore: "Design voice-first assistants. Record audio feeds, compile Speech-to-Text Whisper transcriptions, synthesize emotional Text-to-Speech voices, and stream frames over WebSockets.",
+        glossary: [
+            { term: "Speech to Text (STT)", def: "The process of converting spoken audio waveforms into written text transcripts using neural classifiers like Whisper." },
+            { term: "Text to Speech (TTS)", def: "The neural synthesis of realistic human-sounding spoken audio waveforms from input text characters." },
+            { term: "WebRTC Audio", def: "A real-time network protocol for streaming low-latency voice media chunks directly between clients and servers." }
+        ]
+    },
+    9: {
+        id: 9,
+        name: "Production AI & MLOps",
+        topic: "Docker & Cloud MLOps",
+        certTitle: "Production MLOps & Cloud Deployments Certification",
+        image: "assets/ops_realm.jpg",
+        xpReward: 350,
+        salaryReward: 0,
+        rankTitle: "Production MLOps Architect",
+        techStack: ["Docker", "Kubernetes", "CI/CD", "Triton Server", "MLOps", "AWS/GCP"],
+        lore: "Deploy models at massive scale. Build production Docker images, configure FastAPI async background threads, write CI/CD automation rules, and monitor model input drifts.",
+        glossary: [
+            { term: "Docker Container", def: "A lightweight standalone executable software package wrapping application code and system libraries dependencies." },
+            { term: "CI/CD Pipeline", def: "Continuous Integration and Continuous Deployment. Automated scripts running code checks and deploying weights models on push updates." },
+            { term: "Model Drift", def: "The degradation of model performance over time due to shifts in input data distributions compared to training weights." }
         ]
     }
 };
 
 // Compile granular lines into standard FCC 30-step Workshop steps
 function compileRealmsSteps() {
+    realms[0].steps = buildStepsList(level0Lines);
     realms[1].steps = buildStepsList(level1Lines);
     realms[2].steps = buildStepsList(level2Lines);
     realms[3].steps = buildStepsList(level3Lines);
     realms[4].steps = buildStepsList(level4Lines);
     realms[5].steps = buildStepsList(level5Lines);
+    realms[6].steps = buildStepsList(level6Lines);
+    realms[7].steps = buildStepsList(level7Lines);
+    realms[8].steps = buildStepsList(level8Lines);
+    realms[9].steps = buildStepsList(level9Lines);
 }
 
 function buildStepsList(lines) {
@@ -317,16 +382,21 @@ let gameState = {
         dl: 5,
         ops: 5
     },
-    unlockedLevels: [1], 
+    unlockedLevels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 
     completedLevels: [],
     
-    // Map tracking completed steps inside each Workshop level: e.g. {1: [1, 2], 2: []}
+    // Map tracking completed steps inside each Workshop level
     completedSteps: {
+        0: [],
         1: [],
         2: [],
         3: [],
         4: [],
-        5: []
+        5: [],
+        6: [],
+        7: [],
+        8: [],
+        9: []
     },
     // The active Workshop level and step loaded in Workspace
     currentLevelDetail: null,
@@ -756,7 +826,7 @@ function renderCurriculumList() {
     const container = document.getElementById("curriculum-container");
     container.innerHTML = "";
 
-    for (let lvl = 1; lvl <= 5; lvl++) {
+    for (let lvl = 0; lvl <= 9; lvl++) {
         const realm = realms[lvl];
         const isUnlocked = gameState.unlockedLevels.includes(lvl);
         const isCompleted = gameState.completedLevels.includes(lvl);
@@ -995,11 +1065,16 @@ function enterWorkspace(lvlId, stepId) {
 
     // Populate Complete Sample Program on the right panel
     let linesArr = [];
-    if (lvlId === 1) linesArr = level1Lines;
+    if (lvlId === 0) linesArr = level0Lines;
+    else if (lvlId === 1) linesArr = level1Lines;
     else if (lvlId === 2) linesArr = level2Lines;
     else if (lvlId === 3) linesArr = level3Lines;
     else if (lvlId === 4) linesArr = level4Lines;
     else if (lvlId === 5) linesArr = level5Lines;
+    else if (lvlId === 6) linesArr = level6Lines;
+    else if (lvlId === 7) linesArr = level7Lines;
+    else if (lvlId === 8) linesArr = level8Lines;
+    else if (lvlId === 9) linesArr = level9Lines;
 
     let fullSample = "";
     for (let j = 0; j < stepId; j++) {
@@ -1570,22 +1645,36 @@ let labAnimFrame = 0;
 function switchHomeTab(tabName) {
     synth.playClick();
     const tabCurriculum = document.getElementById("tab-curriculum");
+    const tabRoadmap = document.getElementById("tab-roadmap");
     const tabVisualLabs = document.getElementById("tab-visual-labs");
+    
     const contentCurriculum = document.getElementById("curriculum-tab-content");
+    const contentRoadmap = document.getElementById("roadmap-tab-content");
     const contentVisualLabs = document.getElementById("visual-labs-tab-content");
+
+    // Hide all contents
+    contentCurriculum.style.display = "none";
+    contentRoadmap.style.display = "none";
+    contentVisualLabs.style.display = "none";
+
+    // De-activate all tab buttons
+    tabCurriculum.classList.remove("active");
+    tabRoadmap.classList.remove("active");
+    tabVisualLabs.classList.remove("active");
 
     if (tabName === "curriculum") {
         tabCurriculum.classList.add("active");
-        tabVisualLabs.classList.remove("active");
         contentCurriculum.style.display = "block";
-        contentVisualLabs.style.display = "none";
-    } else {
-        tabCurriculum.classList.remove("active");
-        tabVisualLabs.classList.add("active");
-        contentCurriculum.style.display = "none";
-        contentVisualLabs.style.display = "flex";
+    } else if (tabName === "roadmap") {
+        tabRoadmap.classList.add("active");
+        contentRoadmap.style.display = "flex";
         
-        // Load default lab
+        // Render levels lists and load default Level 0
+        renderRoadmapLevelsList();
+        loadRoadmapLevel(0);
+    } else {
+        tabVisualLabs.classList.add("active");
+        contentVisualLabs.style.display = "flex";
         loadVisualLab(1);
     }
 }
@@ -1971,6 +2060,686 @@ function animateLab() {
     }
 }
 
+// --- 15. AI DEVELOPER ROADMAP CONTROLLER ---
+let activeRoadmapLevelId = 0;
+let roadmapAnimRunning = true;
+let roadmapAnimFrame = 0;
+
+const roadmapLevels = [
+    {
+        id: 0,
+        title: "LEVEL 0: Developer Foundation",
+        desc: "Understand software environments, file structures, CPU/RAM/GPU pipelines, environment variables, command terminals, client-server web foundations, and basic developer tools (VS Code, Git).",
+        syllabus: [
+            "📂 Computer fundamentals: CPU/RAM/GPU processing paths, environment variables, OS structures.",
+            "🐚 Command Line: Navigating folders, directory path scopes, executing python commands.",
+            "🌐 Web foundation: HTTP handshakes, JSON payloads, client vs server communication.",
+            "🛠️ Setup: Installing and using VS Code, Python environment, Terminal CLI, and GitHub."
+        ],
+        controls: [
+            { id: "cpu-cores", label: "CPU Thread Allocation", min: 1, max: 16, step: 1, val: 4, unit: " cores" },
+            { id: "ram-size", label: "RAM Buffer Size", min: 4, max: 64, step: 4, val: 16, unit: " GB" }
+        ],
+        runLog: (inputs) => {
+            const cores = inputs["cpu-cores"];
+            const ram = inputs["ram-size"];
+            const speed = (cores * 1.6 + ram * 0.15).toFixed(1);
+            return [
+                "Initializing Dev environment variables...",
+                "$ git init && mkdir aether_app && cd aether_app",
+                `Repository initialized. System resources: ${cores} CPU threads, ${ram} GB RAM allocations.`,
+                `$ python -m venv venv && pip install -r requirements.txt`,
+                `[SUCCESS] Dev setup online. Workspace transfer rates: ${speed} GB/s. Milestone achieved!`
+            ];
+        }
+    },
+    {
+        id: 1,
+        title: "LEVEL 1: Master Python 🐍",
+        desc: "Solve logic problems with Python programming. Master structures, lambda expressions, list comprehensions, exceptions, OOP frameworks, and virtualenv systems.",
+        syllabus: [
+            "🐍 Basics: variables, numbers, strings, conditionals (if/elif/else), loops (for/while), list/tuple/dict structures.",
+            "🔧 Functions & Lambdas: parameters, scopes, return outputs, map, zip(), enumerate().",
+            "🧩 Advanced: File/Exception handling, OOP classes, pip package installer, virtual environments.",
+            "🚀 Challenges: Calculator, Expense tracker, Web scraper, Password generator."
+        ],
+        controls: [
+            { id: "loops-count", label: "Iteration Loops Count", min: 100, max: 1000, step: 100, val: 500, unit: " loops" },
+            { id: "compre-depth", label: "List Comprehension Nesting", min: 1, max: 3, step: 1, val: 1, unit: " levels" }
+        ],
+        runLog: (inputs) => {
+            const loops = inputs["loops-count"];
+            const depth = inputs["compre-depth"];
+            const complexity = loops * depth;
+            return [
+                "Compiling Python Syntax trees...",
+                "$ python interpreter.py --run loops_comp",
+                `Executing list comprehension at nesting depth: ${depth}. Loop runs: ${loops}.`,
+                `Calculating primes & dictionary zip filters...`,
+                `[SUCCESS] Execution complete in ${complexity / 10}ms. OOP structures initialized successfully!`
+            ];
+        }
+    },
+    {
+        id: 2,
+        title: "LEVEL 2: Software Development",
+        desc: "Build software surrounding AI models. Master Git branchings, PostgreSQL SQL relations, HTTP endpoints, status codes, and FastAPI backend servers.",
+        syllabus: [
+            "🌿 Git/GitHub: branch, merge, commit flows, pull requests, .gitignore, README assets.",
+            "🗄️ SQL: relations, SELECT, JOIN queries, INSERT, primary/foreign key connections.",
+            "⚡ APIs: HTTP statuses, GET/POST routing, JSON serialization, API auth keys.",
+            " FastAPI: building async endpoints, serving JSON payloads, CORS integration."
+        ],
+        controls: [
+            { id: "sql-joins", label: "SQL JOIN Operations", min: 1, max: 5, step: 1, val: 2, unit: " joins" },
+            { id: "api-rate", label: "FastAPI Endpoint Traffic Limit", min: 100, max: 1000, step: 100, val: 500, unit: " req/s" }
+        ],
+        runLog: (inputs) => {
+            const joins = inputs["sql-joins"];
+            const rate = inputs["api-rate"];
+            return [
+                "Connecting to PostgreSQL database...",
+                `$ SELECT * FROM users JOIN profiles ON users.id = profiles.user_id (${joins} joins)...`,
+                `Found foreign key records. Output: 42 match rows.`,
+                `FastAPI server listening at: http://localhost:8000/api/v1`,
+                `[SUCCESS] Serving async GET request. Handled traffic load: ${rate} reqs/sec with 0% drops.`
+            ];
+        }
+    },
+    {
+        id: 3,
+        title: "LEVEL 3: Mathematics & Data",
+        desc: "Master linear algebra vectors, statistics mean/variance, partial derivatives, and data visualization using NumPy, Pandas, and Matplotlib.",
+        syllabus: [
+            "📐 Math basics: matrix multiplication, dot product, dimensions, transpose transformations.",
+            "📊 Statistics: mean, standard deviation, probability distributions, correlations.",
+            "📈 Calculus: derivatives, gradients, partial derivatives, gradient descent algorithms.",
+            "🐼 Data tools: Pandas DataFrames loading, cleaning, analyzing, Matplotlib charts plotting."
+        ],
+        controls: [
+            { id: "matrix-dim", label: "Matrix Dimension size", min: 16, max: 256, step: 16, val: 64, unit: " x px" },
+            { id: "grad-step", label: "Gradient Descent Step Size (Alpha)", min: 0.01, max: 0.50, step: 0.01, val: 0.10, unit: "" }
+        ],
+        runLog: (inputs) => {
+            const size = inputs["matrix-dim"];
+            const lr = inputs["grad-step"];
+            const error = (0.5 / (lr * 10)).toFixed(4);
+            return [
+                "Loading NumPy Matrix arrays...",
+                `Performing dot product on shape: (${size}, ${size}) x (${size}, ${size})...`,
+                `Matrix product compiled. Computing partial derivatives dL/dW...`,
+                `Gradient Descent step: W = W - ${lr} * dL. Cost error value: ${error}.`,
+                `[SUCCESS] Cost minimum local reached. Insight graphs plotted successfully!`
+            ];
+        }
+    },
+    {
+        id: 4,
+        title: "LEVEL 4: Machine Learning 🤖",
+        desc: "Train supervised and unsupervised models. Build price predictions, classification systems, decision trees, random forests, and clusters using scikit-learn.",
+        syllabus: [
+            "🛠️ ML Workflow: data collection, cleaning, feature engineering, train/test split.",
+            "🤖 Supervised: Linear Regression, Logistic classification, Decision Trees, Random Forests, SVMs.",
+            "🔬 Unsupervised: K-Means clustering, PCA dimensionality reductions.",
+            "🎯 Concepts: overfitting, bias, variance, regularizations, cross-validations, scikit-learn."
+        ],
+        controls: [
+            { id: "forest-trees", label: "Random Forest Estimators Count", min: 10, max: 200, step: 10, val: 100, unit: " trees" },
+            { id: "test-ratio", label: "Dataset Train/Test Split Ratio", min: 0.10, max: 0.50, step: 0.05, val: 0.20, unit: "" }
+        ],
+        runLog: (inputs) => {
+            const trees = inputs["forest-trees"];
+            const ratio = inputs["test-ratio"];
+            const acc = (88 + (trees * 0.05) - (ratio * 10)).toFixed(1);
+            return [
+                "Splitting dataset: train ratio = " + (1 - ratio).toFixed(2) + ", test ratio = " + ratio + "...",
+                "Running feature engineering scaling on metrics...",
+                `Fitting ${trees} Random Forest estimators...`,
+                `Calculating validation confusion matrix...`,
+                `[SUCCESS] Model training complete. Classifier validation accuracy: ${acc}%. Churn list compiled.`
+            ];
+        }
+    },
+    {
+        id: 5,
+        title: "LEVEL 5: Deep Learning 🧠",
+        desc: "Build neural network systems, activation backpropagation, CNNs for computer vision, RNNs, and Transformer self-attentions using PyTorch.",
+        syllabus: [
+            "🧠 Neural nets: weights, biases, activations (ReLU/Sigmoid), forward/backpropagation, loss functions.",
+            "👁️ Computer Vision: CNN layers, pooling kernels, object recognition, PyTorch models.",
+            "🌀 Sequences: RNN networks, LSTM states, temporal predictions.",
+            "⭐ Transformers: self-attention metrics, embeddings, positional encoding, encoder-decoder."
+        ],
+        controls: [
+            { id: "neural-layers", label: "Hidden Neurons Layer Count", min: 1, max: 8, step: 1, val: 3, unit: " layers" },
+            { id: "learn-rate", label: "Weight Learning Rate (Eta)", min: 0.001, max: 0.100, step: 0.005, val: 0.010, unit: "" }
+        ],
+        runLog: (inputs) => {
+            const layers = inputs["neural-layers"];
+            const lr = inputs["learn-rate"];
+            const finalLoss = (0.24 / (layers * 1.5 + 1)).toFixed(4);
+            return [
+                "Initializing PyTorch tensor graph models...",
+                `Constructing hidden network layers: ${layers} Linear configurations.`,
+                "Epoch 1/50 -> Loss: 0.8421 | Forward pass success",
+                "Epoch 50/50 -> Backpropagation updates completed. Loss value: " + finalLoss + ".",
+                `[SUCCESS] Model convergence hit. PyTorch weights checkpoint saved. Vision pipeline ready.`
+            ];
+        }
+    },
+    {
+        id: 6,
+        title: "LEVEL 6: Generative AI 🚀",
+        desc: "Master LLM fundamentals, tokens, context limits, role prompts, few-shot prompting, function tool callings, and custom Document RAG engines.",
+        syllabus: [
+            "🚀 Fundamentals: tokenizations, vector embeddings, context windows, temperature outputs.",
+            "📝 Prompting: role prompts, few-shot prompts, chain-of-thought logics, schemas.",
+            "📚 PDF RAG: document chunking, metadata filters, semantic search vector databases.",
+            "🛠️ APIs: OpenAI/Anthropic APIs, structured outputs, JSON schema validation, evaluations."
+        ],
+        controls: [
+            { id: "llm-temp", label: "LLM Generation Temperature", min: 0.0, max: 1.5, step: 0.1, val: 0.7, unit: "" },
+            { id: "chunk-tokens", label: "Document Chunk size limit", min: 128, max: 1024, step: 128, val: 512, unit: " tokens" }
+        ],
+        runLog: (inputs) => {
+            const temp = inputs["llm-temp"];
+            const chunk = inputs["chunk-tokens"];
+            const hallucination = (temp * 35).toFixed(0);
+            return [
+                "Splitting PDF document into text chunks: limit = " + chunk + " tokens...",
+                "Running text-embedding-ada-002 model vectors creation...",
+                "Indexing vector database index nodes...",
+                `Invoking LLM completion API: temperature = ${temp}.`,
+                `[SUCCESS] Document QA answer completed. Hallucination risk: ${hallucination}%. RAG context fed.`
+            ];
+        }
+    },
+    {
+        id: 7,
+        title: "LEVEL 7: AI Agents 🔥",
+        desc: "Build JARVIS-style autonomous systems: tool-calling loops, multi-agent collaborations, memory, agent frameworks, research assistants, and job matched workflows.",
+        syllabus: [
+            "🔥 Tool Calling: LLM choosing search_web(), send_email(), read_calendar() loops.",
+            "🧠 Agent design: loops, planning frameworks, system memory registers, guardrails.",
+            "🤝 Swarms: multi-agent collaborative workflows, human-in-the-loop validation.",
+            "🛠️ Projects: AI Research Agent (Topic -> search -> compare -> report), AI Job Assistant."
+        ],
+        controls: [
+            { id: "agent-count", label: "Swarm Collaboration Nodes", min: 2, max: 6, step: 1, val: 3, unit: " agents" },
+            { id: "agent-iter", label: "Max Agent Thinking Loops", min: 1, max: 10, step: 1, val: 5, unit: " runs" }
+        ],
+        runLog: (inputs) => {
+            const count = inputs["agent-count"];
+            const iter = inputs["agent-iter"];
+            return [
+                `Spawning Agent Crew: ${count} specialized nodes (Researcher, Coder, QA)...`,
+                "Task 1: Querying web APIs regarding research topics...",
+                "Task 2: Compiling report markdown assets...",
+                `Thought Loop -> Iteration ${iter}/${iter}: Reviewing citation lists...`,
+                `[SUCCESS] swarms workflow completed. Swarm threads resolved. Cite list saved. Jarvis assistance ready.`
+            ];
+        }
+    },
+    {
+        id: 8,
+        title: "LEVEL 8: Voice AI 🎙️",
+        desc: "Integrate Speech-to-Text transcribers, real-time voice streaming pipelines, Text-to-Speech voices, WebRTC communication models, and custom conversational JARVIS voice assistants.",
+        syllabus: [
+            "🎙️ Speech to Text: Whisper transcribers, real-time streaming, latency reduction.",
+            "🔊 Text to Speech: Voice cloning, emotional speech, TTS synthesis controllers.",
+            "🛰️ Streams: WebRTC real-time connections, WebSockets audio packets streams.",
+            "🤖 Voice Agents: Handling user interruptions, silence detectors, conversation loops."
+        ],
+        controls: [
+            { id: "tts-speed", label: "Voice synthesis speed", min: 0.5, max: 2.0, step: 0.1, val: 1.0, unit: "x" },
+            { id: "audio-latency", label: "WebRTC Audio Packet Buffer", min: 50, max: 400, step: 50, val: 150, unit: " ms" }
+        ],
+        runLog: (inputs) => {
+            const speed = inputs["tts-speed"];
+            const lat = inputs["audio-latency"];
+            return [
+                "Connecting WebSockets audio channels...",
+                "User: 'Aethera, initialize Jarvis protocol...'",
+                "Speech-to-Text: Whisper transcription completed in 90ms.",
+                `synthesizing text response... Voice speed: ${speed}x.`,
+                `[SUCCESS] Streaming WebRTC audio. Latency buffer: ${lat}ms. Voice assistants online.`
+            ];
+        }
+    },
+    {
+        id: 9,
+        title: "LEVEL 9: Production AI & MLOps",
+        desc: "Deploy models as high-scale production systems. Master Linux nodes, FastAPI async channels, Docker containers, Cloud APIs (AWS/GCP), CI/CD pipelines, and MLOps metrics logging.",
+        syllabus: [
+            "⚡ Production API: FastAPI, asynchronous channels, WebSockets, background threads.",
+            "🐳 Containers: Dockerfiles, image building, Docker Compose systems, pod scales.",
+            "🚀 Deployments: Linux nodes, CI/CD integrations, cloud logging, Google Cloud/AWS.",
+            "📈 MLOps: Experiment tracking, model registers, drift monitoring, eval pipelines."
+        ],
+        controls: [
+            { id: "docker-replicas", label: "Container Docker Pod Replicas", min: 1, max: 10, step: 1, val: 3, unit: " pods" },
+            { id: "traffic-load", label: "Simulated Endpoint Traffic Load", min: 1000, max: 20000, step: 1000, val: 5000, unit: " req/s" }
+        ],
+        runLog: (inputs) => {
+            const pods = inputs["docker-replicas"];
+            const load = inputs["traffic-load"];
+            const podLoad = (load / pods).toFixed(0);
+            return [
+                "Building production Docker image...",
+                `Spawning ${pods} Container Pods in Kubernetes cluster...`,
+                `Starting Loadbalancer routing channels...`,
+                `Simulating API traffic: ${load} reqs/sec. Load per pod: ${podLoad} reqs/sec.`,
+                `[SUCCESS] CI/CD build successfully deployed. System status: 100% healthy. Logs monitored.`
+            ];
+        }
+    }
+];
+
+function renderRoadmapLevelsList() {
+    const list = document.getElementById("roadmap-levels-list");
+    list.innerHTML = `<h4 style="font-family: var(--font-cyber); font-size: 10px; color: var(--neon-cyan); letter-spacing: 0.5px; margin-bottom: 8px;">ROADMAP LEVELS</h4>`;
+    
+    roadmapLevels.forEach(level => {
+        const btn = document.createElement("button");
+        btn.className = `lab-topic-btn ${level.id === activeRoadmapLevelId ? "active" : ""}`;
+        btn.id = `roadmap-btn-${level.id}`;
+        btn.innerHTML = `${level.id}. ${level.title.split(":")[1] || level.title}`;
+        btn.addEventListener("click", () => loadRoadmapLevel(level.id));
+        list.appendChild(btn);
+    });
+}
+
+function loadRoadmapLevel(levelId) {
+    synth.playClick();
+    activeRoadmapLevelId = levelId;
+
+    roadmapLevels.forEach(level => {
+        const btn = document.getElementById(`roadmap-btn-${level.id}`);
+        if (btn) {
+            if (level.id === levelId) btn.classList.add("active");
+            else btn.classList.remove("active");
+        }
+    });
+
+    document.getElementById("roadmap-active-title").textContent = roadmapLevels[levelId].title.toUpperCase();
+    document.getElementById("roadmap-explanation-text").textContent = roadmapLevels[levelId].desc;
+
+    const syllabusBox = document.getElementById("roadmap-syllabus-container");
+    syllabusBox.innerHTML = "";
+    roadmapLevels[levelId].syllabus.forEach(item => {
+        const div = document.createElement("div");
+        div.style.borderBottom = "1px dashed rgba(255,255,255,0.03)";
+        div.style.paddingBottom = "4px";
+        div.textContent = item;
+        syllabusBox.appendChild(div);
+    });
+
+    // Render steps grid link inside the roadmap tab
+    const gridBox = document.getElementById("roadmap-steps-grid-box");
+    if (gridBox && realms[levelId]) {
+        gridBox.innerHTML = "";
+        const stepsGrid = document.createElement("div");
+        stepsGrid.className = "curriculum-steps-grid";
+        const completed = gameState.completedSteps[levelId] || [];
+        const totalSteps = Object.keys(realms[levelId].steps).length;
+        
+        for (let step = 1; step <= totalSteps; step++) {
+            const isDone = completed.includes(step);
+            const tile = document.createElement("div");
+            tile.className = `curriculum-step-box ${isDone ? "completed" : ""}`;
+            tile.textContent = step;
+            tile.addEventListener("click", (e) => {
+                e.stopPropagation();
+                startWorkshopStep(levelId, step);
+            });
+            stepsGrid.appendChild(tile);
+        }
+        gridBox.appendChild(stepsGrid);
+    }
+
+    const controlsBox = document.getElementById("roadmap-controls-container");
+    controlsBox.innerHTML = "";
+    roadmapLevels[levelId].controls.forEach(ctrl => {
+        const div = document.createElement("div");
+        div.className = "lab-slider-group";
+        div.innerHTML = `
+            <label>${ctrl.label}: <span id="val-roadmap-${ctrl.id}">${ctrl.val}${ctrl.unit}</span></label>
+            <input type="range" class="lab-slider" id="slider-roadmap-${ctrl.id}" min="${ctrl.min}" max="${ctrl.max}" step="${ctrl.step}" value="${ctrl.val}">
+        `;
+        controlsBox.appendChild(div);
+        
+        const slider = div.querySelector("input");
+        slider.addEventListener("input", (e) => {
+            document.getElementById(`val-roadmap-${ctrl.id}`).textContent = e.target.value + ctrl.unit;
+        });
+    });
+
+    const consoleLogs = document.getElementById("roadmap-console-logs");
+    consoleLogs.innerHTML = `<div class="lab-log-entry system">Loaded Roadmap Level ${levelId}. Sandbox compilation ready...</div>`;
+}
+
+function toggleRoadmapAnimation() {
+    synth.playClick();
+    roadmapAnimRunning = !roadmapAnimRunning;
+    const icon = document.getElementById("play-roadmap-icon");
+    const text = document.getElementById("play-roadmap-text");
+
+    if (roadmapAnimRunning) {
+        icon.className = "fa-solid fa-pause";
+        text.textContent = "PAUSE";
+        animateRoadmap();
+    } else {
+        icon.className = "fa-solid fa-play";
+        text.textContent = "PLAY";
+    }
+}
+
+function executeRoadmapExperiment() {
+    synth.playClick();
+    const consoleLogs = document.getElementById("roadmap-console-logs");
+    consoleLogs.innerHTML = "";
+
+    appendRoadmapLog("Compiling execution sandbox parameters...", "system");
+    synth.playOsc(650, 0.08, "sine", 0.05);
+
+    const level = roadmapLevels[activeRoadmapLevelId];
+    const inputs = {};
+    level.controls.forEach(ctrl => {
+        const elem = document.getElementById(`slider-roadmap-${ctrl.id}`);
+        inputs[ctrl.id] = elem ? parseFloat(elem.value) : ctrl.val;
+    });
+
+    const logs = level.runLog(inputs);
+    
+    logs.forEach((logText, idx) => {
+        setTimeout(() => {
+            let logType = "info";
+            if (logText.startsWith("$")) logType = "system";
+            else if (logText.startsWith("[SUCCESS]")) logType = "success";
+            
+            appendRoadmapLog(logText, logType);
+
+            if (idx === logs.length - 1) {
+                synth.playSuccess();
+                gameState.xp += 10;
+                appendTerminalLog(`Earned +10 XP for executing Level ${activeRoadmapLevelId} roadmap lab experiment!`, "success");
+                updateStatsUI();
+            } else {
+                synth.playClick();
+            }
+        }, (idx + 1) * 800);
+    });
+}
+
+function appendRoadmapLog(text, type) {
+    const logs = document.getElementById("roadmap-console-logs");
+    const entry = document.createElement("div");
+    entry.className = `lab-log-entry ${type}`;
+    entry.textContent = text;
+    logs.appendChild(entry);
+    logs.scrollTop = logs.scrollHeight;
+}
+
+function animateRoadmap() {
+    if (!roadmapAnimRunning) return;
+    requestAnimationFrame(animateRoadmap);
+
+    const canvas = document.getElementById("roadmap-animation-canvas");
+    if (!canvas || canvas.offsetParent === null) return;
+    
+    const ctx = canvas.getContext("2d");
+    
+    if (canvas.width !== canvas.clientWidth || canvas.height !== canvas.clientHeight) {
+        canvas.width = canvas.clientWidth;
+        canvas.height = canvas.clientHeight;
+    }
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    roadmapAnimFrame++;
+
+    const w = canvas.width;
+    const h = canvas.height;
+    const midY = h / 2;
+
+    if (activeRoadmapLevelId === 0) {
+        // --- LEVEL 0: CPU/RAM/GPU PIPELINES ---
+        ctx.fillStyle = "rgba(0, 240, 255, 0.1)";
+        ctx.strokeStyle = "var(--neon-cyan)";
+        ctx.lineWidth = 1.5;
+
+        ctx.beginPath(); ctx.rect(40, midY - 20, 40, 40); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = "#fff"; ctx.font = "8px var(--font-cyber)"; ctx.fillText("CPU", 51, midY + 4);
+
+        ctx.fillStyle = "rgba(255, 215, 0, 0.1)";
+        ctx.strokeStyle = "var(--neon-gold)";
+        ctx.beginPath(); ctx.rect(w/2 - 20, midY - 20, 40, 40); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = "#fff"; ctx.fillText("RAM", w/2 - 9, midY + 4);
+
+        ctx.fillStyle = "rgba(189, 0, 255, 0.1)";
+        ctx.strokeStyle = "var(--neon-purple)";
+        ctx.beginPath(); ctx.rect(w - 80, midY - 20, 40, 40); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = "#fff"; ctx.fillText("GPU", w - 69, midY + 4);
+
+        const cycle = roadmapAnimFrame % 90;
+        const pct = (cycle % 45) / 45;
+        ctx.fillStyle = "var(--neon-cyan)";
+        if (cycle < 45) {
+            ctx.beginPath(); ctx.arc(80 + (w/2 - 20 - 80)*pct, midY, 4, 0, Math.PI*2); ctx.fill();
+        } else {
+            ctx.beginPath(); ctx.arc((w/2 + 20) + (w - 80 - (w/2 + 20))*pct, midY, 4, 0, Math.PI*2); ctx.fill();
+        }
+
+    } else if (activeRoadmapLevelId === 1) {
+        // --- LEVEL 1: PYTHON STACK ---
+        ctx.fillStyle = "rgba(0, 240, 255, 0.08)";
+        ctx.strokeStyle = "var(--neon-cyan)";
+        ctx.strokeRect(w/2 - 60, midY - 30, 120, 60);
+
+        ctx.fillStyle = "#fff"; ctx.font = "8.5px var(--font-mono)";
+        const step = Math.floor(roadmapAnimFrame / 20) % 4;
+        if (step >= 0) ctx.fillText(">>> x = 42", w/2 - 50, midY - 14);
+        if (step >= 1) ctx.fillText(">>> name = 'Aether'", w/2 - 50, midY - 2);
+        if (step >= 2) ctx.fillText(">>> print(x, name)", w/2 - 50, midY + 10);
+        if (step >= 3) {
+            ctx.fillStyle = "var(--neon-gold)";
+            ctx.fillText("42 Aether", w/2 - 50, midY + 22);
+        }
+
+    } else if (activeRoadmapLevelId === 2) {
+        // --- LEVEL 2: API SERVER ENDPOINTS ---
+        ctx.fillStyle = "rgba(0, 240, 255, 0.1)";
+        ctx.strokeStyle = "var(--neon-cyan)";
+        ctx.lineWidth = 1.5;
+        
+        ctx.beginPath(); ctx.arc(45, midY, 15, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = "#fff"; ctx.font = "8px var(--font-cyber)"; ctx.fillText("CLIENT", 31, midY + 3);
+
+        ctx.fillStyle = "rgba(189, 0, 255, 0.1)";
+        ctx.strokeStyle = "var(--neon-purple)";
+        ctx.beginPath(); ctx.rect(w/2 - 30, midY - 20, 60, 40); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = "#fff"; ctx.fillText("FASTAPI", w/2 - 18, midY + 3);
+
+        ctx.fillStyle = "rgba(255, 215, 0, 0.1)";
+        ctx.strokeStyle = "var(--neon-gold)";
+        ctx.beginPath(); ctx.arc(w - 45, midY, 15, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = "#fff"; ctx.fillText("POSTGRES", w - 68, midY + 3);
+
+        const cycle = roadmapAnimFrame % 100;
+        const pct = (cycle % 50) / 50;
+        ctx.fillStyle = "var(--neon-cyan)";
+        if (cycle < 50) {
+            ctx.beginPath(); ctx.arc(60 + (w/2 - 30 - 60)*pct, midY - 4, 3.5, 0, Math.PI*2); ctx.fill();
+        } else {
+            ctx.fillStyle = "var(--neon-gold)";
+            ctx.beginPath(); ctx.arc((w/2 + 30) + (w - 60 - (w/2 + 30))*pct, midY + 4, 3.5, 0, Math.PI*2); ctx.fill();
+        }
+
+    } else if (activeRoadmapLevelId === 3) {
+        // --- LEVEL 3: GRADIENT DESCENT CURVE ---
+        ctx.strokeStyle = "rgba(255,255,255,0.2)";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        for (let x = w/2 - 80; x <= w/2 + 80; x++) {
+            const rx = (x - w/2) / 40;
+            const ry = rx * rx;
+            const y = midY + 25 - ry * 25;
+            if (x === w/2 - 80) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+
+        ctx.fillStyle = "var(--neon-green)";
+        ctx.beginPath(); ctx.arc(w/2, midY + 25, 4, 0, Math.PI*2); ctx.fill();
+
+        const cycle = (roadmapAnimFrame % 90) / 90;
+        const startX = w/2 - 70;
+        const endX = w/2;
+        const curX = startX + (endX - startX)*cycle;
+        const rx = (curX - w/2) / 40;
+        const curY = midY + 25 - (rx * rx) * 25;
+
+        ctx.fillStyle = "var(--neon-gold)";
+        ctx.beginPath(); ctx.arc(curX, curY - 5, 5, 0, Math.PI*2); ctx.fill();
+
+    } else if (activeRoadmapLevelId === 4) {
+        // --- LEVEL 4: SCATTERED DATA CLUSTERING ---
+        ctx.fillStyle = "var(--neon-cyan)";
+        const points = [
+            {x: -40, y: -20}, {x: -30, y: -10}, {x: -25, y: -25},
+            {x: 30, y: 15}, {x: 40, y: 25}, {x: 25, y: 30}
+        ];
+        points.forEach(pt => {
+            ctx.beginPath(); ctx.arc(w/2 + pt.x, midY + pt.y, 3.5, 0, Math.PI*2); ctx.fill();
+        });
+
+        ctx.strokeStyle = "var(--neon-gold)";
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(w/2 - 60, midY - 30);
+        ctx.lineTo(w/2 + 60, midY + 30);
+        ctx.stroke();
+
+    } else if (activeRoadmapLevelId === 5) {
+        // --- LEVEL 5: NEURAL NETWORK ACTIVATIONS ---
+        const inputs = [midY - 24, midY, midY + 24];
+        const hiddens = [midY - 30, midY - 10, midY + 10, midY + 30];
+        const outputs = [midY];
+
+        ctx.strokeStyle = "rgba(255,255,255,0.06)";
+        inputs.forEach(iy => {
+            hiddens.forEach(hy => {
+                ctx.beginPath(); ctx.moveTo(w/2 - 60, iy); ctx.lineTo(w/2, hy); ctx.stroke();
+            });
+        });
+        hiddens.forEach(hy => {
+            outputs.forEach(oy => {
+                ctx.beginPath(); ctx.moveTo(w/2, hy); ctx.lineTo(w/2 + 60, oy); ctx.stroke();
+            });
+        });
+
+        ctx.fillStyle = "rgba(0, 240, 255, 0.15)";
+        ctx.strokeStyle = "var(--neon-cyan)";
+        inputs.forEach(iy => {
+            ctx.beginPath(); ctx.arc(w/2 - 60, iy, 7, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+        });
+        ctx.fillStyle = "rgba(189, 0, 255, 0.15)";
+        ctx.strokeStyle = "var(--neon-purple)";
+        hiddens.forEach(hy => {
+            ctx.beginPath(); ctx.arc(w/2, hy, 7, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+        });
+        ctx.fillStyle = "rgba(255, 215, 0, 0.15)";
+        ctx.strokeStyle = "var(--neon-gold)";
+        outputs.forEach(oy => {
+            ctx.beginPath(); ctx.arc(w/2 + 60, oy, 7, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+        });
+
+    } else if (activeRoadmapLevelId === 6) {
+        // --- LEVEL 6: RAG CHUNKS PIPELINE ---
+        ctx.strokeStyle = "var(--border-color)";
+        ctx.lineWidth = 1;
+        ctx.strokeRect(40, midY - 24, 30, 48);
+        ctx.fillStyle = "#fff"; ctx.font = "7.5px var(--font-cyber)"; ctx.fillText("PDF", 49, midY + 3);
+
+        ctx.strokeRect(w/2 - 20, midY - 12, 40, 24);
+        ctx.fillStyle = "var(--neon-cyan)"; ctx.fillText("CHUNKS", w/2 - 17, midY + 3);
+
+        ctx.strokeRect(w - 75, midY - 24, 35, 48);
+        ctx.fillStyle = "var(--neon-gold)"; ctx.fillText("VDB", w - 66, midY + 3);
+
+        const cycle = roadmapAnimFrame % 90;
+        const pct = (cycle % 45) / 45;
+        if (cycle < 45) {
+            ctx.fillStyle = "var(--neon-cyan)";
+            ctx.beginPath(); ctx.arc(70 + (w/2 - 20 - 70)*pct, midY, 4, 0, Math.PI*2); ctx.fill();
+        } else {
+            ctx.fillStyle = "var(--neon-gold)";
+            ctx.beginPath(); ctx.arc((w/2 + 20) + (w - 75 - (w/2 + 20))*pct, midY, 4, 0, Math.PI*2); ctx.fill();
+        }
+
+    } else if (activeRoadmapLevelId === 7) {
+        // --- LEVEL 7: AGENT TOOLS LOOP ---
+        ctx.fillStyle = "rgba(0, 240, 255, 0.15)";
+        ctx.strokeStyle = "var(--neon-cyan)";
+        ctx.beginPath(); ctx.arc(w/2, midY, 20, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = "#fff"; ctx.font = "8px var(--font-cyber)"; ctx.fillText("AGENT", w/2 - 13, midY + 3);
+
+        const tools = [
+            {name: "search_web", x: w/2 - 80, y: midY - 25},
+            {name: "read_db", x: w/2 - 80, y: midY + 15},
+            {name: "run_code", x: w/2 + 50, y: midY - 5}
+        ];
+        tools.forEach(tool => {
+            ctx.fillStyle = "rgba(255, 215, 0, 0.08)";
+            ctx.strokeStyle = "rgba(255, 215, 0, 0.25)";
+            ctx.strokeRect(tool.x, tool.y, 45, 16);
+            ctx.fillStyle = "#fff"; ctx.font = "7.5px var(--font-mono)";
+            ctx.fillText(tool.name, tool.x + 3, tool.y + 11);
+        });
+
+        const activeIdx = Math.floor(roadmapAnimFrame / 30) % tools.length;
+        const tool = tools[activeIdx];
+        ctx.strokeStyle = "var(--neon-gold)";
+        ctx.beginPath(); ctx.moveTo(w/2, midY); ctx.lineTo(tool.x + 22, tool.y + 8); ctx.stroke();
+
+    } else if (activeRoadmapLevelId === 8) {
+        // --- LEVEL 8: AUDIO SINE WAVE STREAM ---
+        ctx.strokeStyle = "var(--neon-cyan)";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        for (let x = 20; x < w - 20; x++) {
+            const angle = (x / 18) + (roadmapAnimFrame * 0.15);
+            const y = midY + Math.sin(angle) * 20;
+            if (x === 20) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+
+        ctx.fillStyle = "#fff"; ctx.font = "8px var(--font-cyber)";
+        ctx.fillText("VOICE STREAM IN / OUT", w/2 - 45, midY - 26);
+
+    } else if (activeRoadmapLevelId === 9) {
+        // --- LEVEL 9: DOCKER CONTAINER SCALING ---
+        const containerWidth = 40;
+        const containerHeight = 24;
+        const count = 3;
+        const startX = w/2 - (count*50)/2 + 5;
+
+        for (let i = 0; i < count; i++) {
+            const curX = startX + i*50;
+            ctx.fillStyle = "rgba(0, 240, 255, 0.1)";
+            ctx.strokeStyle = "var(--neon-cyan)";
+            ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.rect(curX, midY - 12, containerWidth, containerHeight); ctx.fill(); ctx.stroke();
+            
+            ctx.fillStyle = "#fff"; ctx.font = "7px var(--font-mono)";
+            ctx.fillText("POD_" + i, curX + 6, midY + 4);
+        }
+
+        ctx.fillStyle = "var(--neon-gold)"; ctx.font = "8.5px var(--font-cyber)";
+        ctx.fillText("MLOPS DEPLOYED", w/2 - 34, midY - 22);
+    }
+}
+
 // --- 12. INITIALIZATION ON PAGE LOAD ---
 window.addEventListener("DOMContentLoaded", () => {
     // Compile steps database dynamically
@@ -1980,6 +2749,8 @@ window.addEventListener("DOMContentLoaded", () => {
     updateAchievementsUI();
     updateLeaderboardUI();
     renderCurriculumList();
+    renderRoadmapLevelsList();
+    loadRoadmapLevel(0);
 
     // Bind login form elements listeners
     document.getElementById("auth-toggle-link").addEventListener("click", toggleAuthMode);
@@ -1987,6 +2758,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Bind Visual Lab tabs and buttons
     document.getElementById("tab-curriculum").addEventListener("click", () => switchHomeTab("curriculum"));
+    document.getElementById("tab-roadmap").addEventListener("click", () => switchHomeTab("roadmap"));
     document.getElementById("tab-visual-labs").addEventListener("click", () => switchHomeTab("labs"));
 
     for (let i = 1; i <= 5; i++) {
@@ -1999,9 +2771,13 @@ window.addEventListener("DOMContentLoaded", () => {
     document.getElementById("play-lab-anim-btn").addEventListener("click", toggleLabAnimation);
     document.getElementById("run-lab-btn").addEventListener("click", executeLabExperiment);
 
+    document.getElementById("play-roadmap-anim-btn").addEventListener("click", toggleRoadmapAnimation);
+    document.getElementById("run-roadmap-btn").addEventListener("click", executeRoadmapExperiment);
+
     // Initial silent visual state greeting
     document.getElementById("oracle-state-indicator").textContent = "SYSTEM: READY";
 
     // Run animation frames
     animateLab();
+    animateRoadmap();
 });
